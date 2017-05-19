@@ -1,0 +1,14 @@
+
+#feeTable {
+	position:  		absolute;
+	right: 			0;
+}
+
+#feeTable input {
+	width:  		120px;
+	text-align:  	right;
+}
+
+#feeTable td:nth-child(1){
+	width:  		150px;
+}
