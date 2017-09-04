@@ -1,0 +1,104 @@
+
+
+<html>
+<head>
+	<title>Split</title>
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="personTable.css">
+	<link rel="stylesheet" type="text/css" href="feeTable.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="script.js"></script>
+	<script src="email.js"></script>
+	<script src="readwrite.js"></script>
+</head>
+<body>
+
+	<div id="container">
+
+		<div id="pageTitle">
+			<span>SPLIT</span>
+			<span>BECAUSE MATH(ING) IS HARD.</span>
+		</div>
+		<form>
+			<table id="personTable">
+				<thead>
+					<th></th>
+					<th>
+						<span id="toggleField">Name</span>
+						<span id="toggleLink">(toggle)</span>
+					</th>
+					<th>Item Cost</th>
+					<th>Add'l Costs</th>
+					<th>Total</th>
+				</thead>
+				<tbody>
+
+					<tr class="person">
+						<td><div class="deletePerson clickElem">x</span></td>
+						<td>
+							<input class="personName" type="text">
+							<input class="personEmail hide" type="text">
+						</td>
+						<td><input class="itemCost" type="text"></td>
+						<td><input class="addlCost" type="text" disabled><input class="percent" type="text" hidden></td>
+						<td><input class="individualTotal" type="text" disabled></td>
+					</tr>
+					<tr class="newPerson hide">
+						<td><div class="deletePerson clickElem">x</span></td>
+						<td>
+							<input class="personName" type="text">
+							<input class="personEmail hide" type="text">
+						</td>
+						<td><input class="itemCost" type="text"></td>
+						<td><input class="addlCost" type="text" disabled><input class="percent" type="text" hidden></td>
+						<td><input class="individualTotal" type="text" disabled></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="4"><div class="clickElem" id="addPerson">add person</div></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table id="feeTable">
+				<tbody>
+					<tr>
+						<td>Subtotal:</td>
+						<td><input id="subTotal" disabled></td>
+					</tr>
+					<tr>
+						<td>Tax:</td>
+						<td><input id="tax"></td>
+					</tr>
+					<tr>
+						<td>Tip:</td>
+						<td><input id="tip"></td>
+					</tr>
+					<tr>
+						<td>Credits:</td>
+						<td><input id="credits"></td>
+					</tr>
+					<tr>
+						<td><b>Total:</b></td>
+						<td><input id="total" disabled></td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+			<div id="bottomBtn">
+				<input type="button" 	class="clickElem" 	id="save" 		value="save">
+				<input type="button" 	class="clickElem" 	id="recall" 	value="recall">
+				<input type="button" 	class="clickElem"	id="notify"		value="notify">
+				<input type="reset" 	class="clickElem" 	id="reset" 		value="reset">
+			</div>
+		</form>
+
+
+	</div>
+</body>
+</html>
+
+
+
