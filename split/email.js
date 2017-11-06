@@ -22,10 +22,6 @@ $(document).on('click', '#toggleLink', function() {
 
 
 $(document).on('click', '#notify', function() {
-
-	if(!emailInputsValid()) return 0;
-	console.log('here');
-
 	var eArr = [];
 	$('.person').each(function(){
 		eArr.push($(this).attr('pEmail'));
@@ -34,9 +30,9 @@ $(document).on('click', '#notify', function() {
 	var gen = '';
 	gen += 'mailto:' + eArr.join(',');
 	gen += '?subject=SPLIT - ' + getDate();
-	gen += '&body=' + 'Feature still in development :(';
+	gen += '?body=' + 'Feature still in development :(';
 
-	//window.location.href = gen;
+	window.open(gen);
 });
 
 
@@ -50,19 +46,4 @@ function getDate() {
 	mm = (mm<10) ? '0'+mm : mm;
 
 	return mm+'/'+dd+'/'+yy;
-}
-
-
-function emailInputsValid() {
-	var retVal = true;
-
-	$('.person .personEmail').each(function(){
-		var emailInput = $(this).val();
-		if(!emailInput || emailInput.indexOf('@') == -1 || emailInput.indexOf('.') == -1)
-			retVal = false;
-	});
-
-	console.info('Notify was clicked --> ' + retVal);
-
-	return retVal;
 }

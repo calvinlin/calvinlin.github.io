@@ -3,7 +3,16 @@ function saveInfo() {
 	//save into 
 
 
-	var saveStr = '';
-	document.cookie="C_split=" + saveStr;
+	var elemArr = [];
+	var pos 	= 0;
+	document.cookie = "C_split=" + saveStr;
+
+	$('.person').each(function() {
+		tempStr += 'index:' 
+		
+		elemArr[pos++] = tempStr;
+	});
 }
+
+
 
