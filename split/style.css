@@ -70,6 +70,10 @@ table input {
 	line-height:  	17px;
 }
 
+.individualTotal {
+	background-color:  	lightyellow;
+}
+
 /*---------------------------------------------------------------------------*/
 
 #bottomBtn {

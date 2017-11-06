@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Created By: 		Calvin
 // Initial Launch: 	1/7/17
-// Last Updated: 	9/23/17
+// Last Updated: 	11/5/17
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Individual Total Calculation:
@@ -32,7 +32,7 @@ function initEvents() {
 		removePerson($(this));
 	});
 
-	$(document).on('input', 'input:not(.personName, .personEmail)', function() {
+	$(document).on('input', 'input:not(.personName)', function() {
 		checkValidInput($(this));
 	});
 
@@ -53,37 +53,36 @@ function initEvents() {
 		alertMessage();
 	});
 
-	// $(document).on('click', '#notify', function() {
-	// 	var email 	= 'SomeRandomEmail@DontSentThis.com';
-	// 	var subject = getDate() + '- Restaruant Name (TEST)';
-	// 	var body 	= 'Feature still in development :(';
+	$(document).on('click', '#notify', function() {
+		var email 	= 'SomeRandomEmail@DontSentThis.com';
+		var subject = getDate() + '- Restaruant Name (TEST)';
+		var body 	= 'Feature still in development :(';
 
-	// 	window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
-	// });
-
+		window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
+	});
 }
 
 function alertMessage() {
 	alert('Feature still in development :(');
 }
 
-// function getDate() {
-// 	var today = new Date();
-// 	var dd = today.getDate();
-// 	var mm = today.getMonth()+1;
-// 	var yy = today.getFullYear().toString().substring(1,3);
+function getDate() {
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yy = today.getFullYear().toString().substring(2,4);
 
-// 	dd = (dd<10) ? '0'+dd : dd;
-// 	mm = (mm<10) ? '0'+mm : mm;
+	dd = (dd<10) ? '0'+dd : dd;
+	mm = (mm<10) ? '0'+mm : mm;
 
-// 	return mm+'/'+dd+'/'+yy;
-// }
+	return mm+'/'+dd+'/'+yy;
+}
 
 
 //=================================================================================================
 
 function addPerson() {
-	$('.newPerson').clone().removeClass('newPerson').removeClass('hide').addClass('person').insertBefore('.newPerson');
+	$('.newPerson').clone().removeClass('newPerson').addClass('person').insertBefore('.newPerson');
 }
 
 function removePerson(elem) {
@@ -135,7 +134,6 @@ function updateIndividualTotal() {
 
 		total += (indivCost == '') 	? 0 : convFloat(indivCost);
 		total += (addlCost == '')	? 0 : convFloat(addlCost);
-		console.log('1: ' + indivCost + '\n2:' + addlCost + '\n3:' + total);
 		$(this).find('.individualTotal').val(convFloat(total));
 	});
 }

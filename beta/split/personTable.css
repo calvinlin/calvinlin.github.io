@@ -12,7 +12,7 @@
 	text-align:  	center;
 }
 
-.personName, .personEmail {
+.personName {
 	width:  		200px;
 	text-align:  	left;
 }
@@ -49,6 +49,6 @@
 	color: 			#EEE;
 }
 
-.hide {
+.newPerson {
 	display:  		none;
 }
