@@ -102,7 +102,7 @@ function removePerson(elem) {
 //converts string to a float rounded to the 100th
 function convFloat(val) {
 	var num = parseFloat(val);
-	return isNaN(num) ? 0 : Math.round(num * 100) / 100;
+	return isNaN(num) ? 0 : (Math.round(num * 100) / 100).toFixed(2);
 }
 
 //checks if input is valid, changes input box to red if invalid
