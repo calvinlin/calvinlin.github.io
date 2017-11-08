@@ -32,16 +32,16 @@
 					<tr class="person">
 						<td><div class="deletePerson clickElem">x</span></td>
 						<td><input class="personName" type="text"></td>
-						<td><input class="itemCost" type="text"></td>
-						<td><input class="addlCost" type="text" disabled><input class="percent" type="text" hidden></td>
-						<td><input class="individualTotal" type="text" disabled></td>
+						<td><input class="itemCost" type="number"></td>
+						<td><input class="addlCost" type="number" disabled><input class="percent" type="number" hidden></td>
+						<td><input class="individualTotal" type="number" disabled></td>
 					</tr>
 					<tr class="newPerson">
 						<td><div class="deletePerson clickElem">x</span></td>
 						<td><input class="personName" type="text"></td>
-						<td><input class="itemCost" type="text"></td>
-						<td><input class="addlCost" type="text" disabled><input class="percent" type="text" hidden></td>
-						<td><input class="individualTotal" type="text" disabled></td>
+						<td><input class="itemCost" type="number"></td>
+						<td><input class="addlCost" type="number" disabled><input class="percent" type="number" hidden></td>
+						<td><input class="individualTotal" type="number" disabled></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -54,23 +54,23 @@
 				<tbody>
 					<tr>
 						<td>Subtotal:</td>
-						<td><input id="subTotal" disabled></td>
+						<td><input id="subTotal"  type="number" disabled></td>
 					</tr>
 					<tr>
 						<td>Tax:</td>
-						<td><input id="tax"></td>
+						<td><input id="tax" type="number"></td>
 					</tr>
 					<tr>
 						<td>Tip:</td>
-						<td><input id="tip"></td>
+						<td><input id="tip" type="number"></td>
 					</tr>
 					<tr>
 						<td>Credits:</td>
-						<td><input id="credits"></td>
+						<td><input id="credits" type="number"></td>
 					</tr>
 					<tr>
 						<td><b>Total:</b></td>
-						<td><input id="total" disabled></td>
+						<td><input id="total"  type="number" disabled></td>
 					</tr>
 				</tbody>
 			</table>
