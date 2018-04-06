@@ -35,24 +35,33 @@ function initEvents() {
 	});
 
 	$('#personTable').on('click', '.deletePerson', function() {
-		removePerson($(this));
+		if($('.person').length > 1) removePerson($(this));
 	});
 
-	$(document).on('input', 'input:not(.personName)', function() {
-		checkValidInput($(this));
+	$('input.num').on('input', function() {
+		if(calcInput($(this).val())){
+			$(this).removeClass('invalidInput');
+			updateAll();
+		}
+		else
+			$(this).addClass('invalidInput');
 	});
 
-	$('#feeTable input').on('input', function() {
-		updateTotal();
-		updateAddlCost();
-		updateIndividualTotal();
+	$('input.num').on('blur', function() {
+		var v = $(this).val();
+		$(this).attr('istr', v);
+
+		if(!calcInput(v))
+			$(this).addClass('invalidInput');
+
+		else {
+			$(this).removeClass('invalidInput');
+			$(this).val(calcInput(v));
+		}
 	});
 
-	$(document).on('input', '.person .itemCost', function() {
-		updatePercentCost();
-		updateAddlCost();
-		updateSubTotal();
-		updateIndividualTotal();
+	$('input.num').on('focus', function() {
+		$(this).val($(this).attr('istr'));
 	});
 
 	$(document).on('click', 'input[type="button"]', function() {
@@ -60,7 +69,7 @@ function initEvents() {
 	});
 
 	$(document).on('click', '#notify', function() {
-		var email 	= 'SomeRandomEmail@DontSentThis.com';
+		var email 	= 'SomeRandomEmail@DontSendThis.com';
 		var subject = getDate() + '- Restaruant Name (TEST)';
 		var body 	= 'Feature still in development :(';
 
@@ -92,9 +101,9 @@ function addPerson() {
 }
 
 function removePerson(elem) {
+
 	elem.parent().parent().remove();
-	updateSubTotal();
-	updateTotal();
+	updateAll();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,20 +128,21 @@ function checkValidInput(elem) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+function updateAll() {
+	// var f = false;
+
+	// $('input[type="number"]').each(function() {
+
+	// 	var val = calcInput($(this).val());
+	// 	if(isNan($(this).val()) && !val) 
+	// 		break;
+	// });
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 function updateIndividualTotal() {
-	// var par = elem.parent().parent();
-	// var total = 0;
-
-	// var indivCost = elem.val();
-	// var addlCost = par.find('.addlCost').val();
-
-	// total += (indivCost == '') 	? 0 : convFloat(indivCost);
-	// total += (addlCost == '')	? 0 : convFloat(addlCost);
-	
-	// par.find('.individualTotal').val(convFloat(total));
-
-
-
 	$('.person').each(function() {
 		var total 		= 0;
 		var indivCost 	= $(this).find('.itemCost').val();
@@ -152,7 +162,6 @@ function updateSubTotal() {
 	});
 
 	$('#subTotal').val(convFloat(subTotal));
-	updateTotal();
 }
 
 function updateTotal() {

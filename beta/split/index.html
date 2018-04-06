@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="feeTable.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="script.js"></script>
+	<script src="calculator.js"></script>
 </head>
 <body>
 
@@ -32,16 +33,16 @@
 					<tr class="person">
 						<td><div class="deletePerson clickElem">x</span></td>
 						<td><input class="personName" type="text"></td>
-						<td><input class="itemCost" type="number"></td>
-						<td><input class="addlCost" type="number" disabled><input class="percent" type="number" hidden></td>
-						<td><input class="individualTotal" type="number" disabled></td>
+						<td><input class="itemCost num" type="number"></td>
+						<td><input class="addlCost num" type="number" disabled><input class="percent" type="text" hidden></td>
+						<td><input class="individualTotal num" type="number" disabled></td>
 					</tr>
 					<tr class="newPerson">
 						<td><div class="deletePerson clickElem">x</span></td>
 						<td><input class="personName" type="text"></td>
-						<td><input class="itemCost" type="number"></td>
-						<td><input class="addlCost" type="number" disabled><input class="percent" type="number" hidden></td>
-						<td><input class="individualTotal" type="number" disabled></td>
+						<td><input class="itemCost num" type="number"></td>
+						<td><input class="addlCost num" type="number" disabled><input class="percent" type="text" hidden></td>
+						<td><input class="individualTotal num" type="number" disabled></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -58,15 +59,15 @@
 					</tr>
 					<tr>
 						<td>Tax:</td>
-						<td><input id="tax" type="number"></td>
+						<td><input id="tax" class="number" type="text"></td>
 					</tr>
 					<tr>
 						<td>Tip:</td>
-						<td><input id="tip" type="number"></td>
+						<td><input id="tip" class="number" type="text"></td>
 					</tr>
 					<tr>
 						<td>Credits:</td>
-						<td><input id="credits" type="number"></td>
+						<td><input id="credits" class="number" type="text"></td>
 					</tr>
 					<tr>
 						<td><b>Total:</b></td>
