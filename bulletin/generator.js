@@ -8,7 +8,7 @@ var doc = new jsPDF({
 // Order of Worship
 //=============================================================================
 
-doc.setFont("futur", "futura", "normal");
+//doc.setFont("futur", "futura", "normal");
 
 //title
 doc.setFontSize(17);
