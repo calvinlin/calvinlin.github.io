@@ -94,13 +94,13 @@ body {
 
 
 @media screen and (min-width: 1200px) {
-  #intro .header {
-     font-size: 80px;
-  }
+	#intro .header {
+		font-size: 80px;
+	}
 
-  #intro .subheader {
-  	font-size: 25px;
-  }
+	#intro .subheader {
+		font-size: 25px;
+	}
 }
 
 
