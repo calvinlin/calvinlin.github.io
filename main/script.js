@@ -5,11 +5,11 @@ $(document).ready(() => {
 
 function init() {
 
-	/*
+	/**
 	*	Add smooth scrolling to anchor tags, because the default one sucks.
 	*	src: https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_eff_animate_smoothscroll
 	*/
-	$("a.navItem").on('click', function(event) {
+	$(".scrollTrigger").on('click', function(event) {
 		event.preventDefault();
 	
 		var hash = this.hash;

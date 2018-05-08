@@ -5,6 +5,7 @@ body {
 	margin:				0;
 	
 	color: 				#111;
+	background: 		#EEE;
 }
 
 /* GLOBAL ATTRIBUTES ======================================================= */
@@ -21,6 +22,9 @@ body {
 	display:  			block;
 }
 
+a {
+	text-decoration:  	none;
+}
 /* ========================================================================= */
 
 
@@ -43,7 +47,6 @@ body {
 	margin: 			0 20px;
 	
 	text-align:  		center;
-	text-decoration:	none;
 	color: 				#555;
 
 	border-bottom: 1px solid rgba(150, 150, 150, 0);
@@ -63,31 +66,35 @@ body {
 
 
 #intro {
-	width: 			90vw;
-	height:			45vh;
-	background:		#EEE;
+	width: 			88vw;
+	height:			30vh;
+	background-image: url("beach.jpeg");
+	background-repeat: no-repeat;
+	background-size:  cover;
+	background-position:  center;
 	z-index:  		1;
 
-	padding:		50vh 5vw 5vh;
+	padding:		65vh 6vw 5vh;
 	position:  		relative;
+	text-align:  	right;
+
+	color: 			#EEE;
+	text-shadow:  	2px 2px #333;
 }
 
 #intro .header {
 	font-weight:  	100;
 	font-style:  	normal;
 	font-size:  	7vw;
-	width:			80%;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 	'Montserrat', sans-serif;
 }
 
 
 #intro .subheader {
 	font-size:  	2.5vw;
 	font-weight:  	100;
-	width: 			80%;
-	color: 			#000;
 
-	font-family: 'Open Sans', sans-serif;
+	font-family: 	'Open Sans', sans-serif;
 }
 
 .viewMore {
