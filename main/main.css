@@ -22,8 +22,18 @@ body {
 	display:  			block;
 }
 
+.section {
+	width:	 			calc(100% - 120px);
+	padding:			60px;
+}
+
 a {
 	text-decoration:  	none;
+}
+
+h2 {
+	margin:				0 0 20px;
+	font-size:  		
 }
 /* ========================================================================= */
 
@@ -65,72 +75,6 @@ a {
 
 
 
-#intro {
-	width: 			88vw;
-	height:			30vh;
-	background-image: url("beach.jpeg");
-	background-repeat: no-repeat;
-	background-size:  cover;
-	background-position:  center;
-	z-index:  		1;
-
-	padding:		65vh 6vw 5vh;
-	position:  		relative;
-	text-align:  	right;
-
-	color: 			#EEE;
-	text-shadow:  	2px 2px #333;
-}
-
-#intro .header {
-	font-weight:  	100;
-	font-style:  	normal;
-	font-size:  	7vw;
-	font-family: 	'Montserrat', sans-serif;
-}
-
-
-#intro .subheader {
-	font-size:  	2.5vw;
-	font-weight:  	100;
-
-	font-family: 	'Open Sans', sans-serif;
-}
-
-.viewMore {
-	position:		absolute;
-	bottom:			30px;
-	left:			calc(50% - 75px);
-	width:			150px;
-	height:			60px;
-	border-radius:  30px;
-
-	text-align:  	center;
-	line-height:  	60px;
-
-	background-color:	#777;
-	color:				#CCC;
-}
-
-.viewMore:hover {
-	background-color: 	#888;
-}
-
-
-
-
-
-
-
-@media screen and (min-width: 1200px) {
-	#intro .header {
-		font-size: 80px;
-	}
-
-	#intro .subheader {
-		font-size: 25px;
-	}
-}
 
 
 

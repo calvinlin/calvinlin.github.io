@@ -1,0 +1,118 @@
+body {
+	font-family: 	'Roboto', sans-serif;
+	background-color:  #F5F5F5;
+}
+
+#content {
+	max-width:  	1350px;
+	margin: 		0 auto;
+}
+
+#title {
+	font-size:  	60px;
+	font-family:  	'Abel', sans-serif;
+}
+
+#output {
+	width: 			800px;
+	display: 		inline-block;
+}
+
+.fullWidth {
+	width:  		calc(100% - 8px);
+}
+
+.button {
+	font-size:  	15px;
+	border-radius:  3px;
+}
+
+::placeholder {
+	color: 			#CCC;
+	font-style:  	italic;
+}
+
+/*--------------------------------------------------------------------------*/
+
+table {
+	text-align:  	left;
+	margin-bottom:	20px;
+}
+
+table th {
+	font-style:  	italic;
+	padding:		10px 0 5px;
+	font-size:  	17px;
+}
+
+#formSubmit {
+	text-align:  	center;
+	height:			40px;
+	background-color: 	green;
+}
+
+.css_clear {
+	clear:			both;
+}
+
+
+.forms {
+	width: 			485px;
+	margin-right:	40px;
+	display: 		inline-block;
+	vertical-align: top;
+}
+
+.forms table {
+	margin-top:		3px;
+    vertical-align: middle;
+}
+
+.forms tr {
+	height:			20px;
+}
+
+.forms label {
+	font-size:  	16px;
+	line-height:  	16px;
+}
+
+input:not([type='submit']), textarea {
+	border-radius:  3px;
+	padding: 		3px;
+	font-size:  	15px;
+	line-height:  	17px;
+	border: 		1px solid #999;
+}
+
+input[type="date"] {
+	padding: 		0 3px;
+}
+
+.forms textarea {
+	margin:			5px 0;
+	min-height:		50px;
+	resize: 		vertical;
+}
+
+
+td:first-child {
+	width:			300px;
+}
+
+#announcements {
+	width:			480px;
+}
+
+
+
+.a_title {
+	width: 			380px;
+	margin-right: 	10px;
+}
+
+.a_clear {
+	width: 			75px;
+	height:			25px;
+	background:		yellow;
+}

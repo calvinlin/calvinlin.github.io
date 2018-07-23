@@ -1,0 +1,44 @@
+#projects {
+	text-align:  		center;
+}
+
+
+.projItem {
+	width:  			500px;
+	margin:				50px;
+	text-align:  		left;
+	display:  			inline-block;
+	vertical-align:  	top;
+
+	box-shadow:  		0 0 5px #888888;
+}
+
+.projImg {
+	height:  			45px;
+	background:			#666;
+	padding:			200px 15px 0;
+
+	color:				#333;
+	font-size:  		30px;
+	text-shadow:  		1px 1px #CCC;
+	vertical-align: 	bottom;
+	background-size:  	cover;
+}
+
+.projDesc {
+	background:			white;
+	height:				65px;
+	padding:			10px 15px 15px;
+	font-size:  		15px;
+	line-height:  		22px;
+}
+
+
+
+#proj_split .projImg {
+	background-image:	url("media/split.png");
+}
+
+#proj_ffr .projImg {
+	background-image:  	url("media/fastfoodrunner.png");
+}

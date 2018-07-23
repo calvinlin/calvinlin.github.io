@@ -1,8 +1,11 @@
-var doc = new jsPDF({
-	orientation: 'l',
-	unit: 'in',
-	format: 'letter'
-});
+
+	var doc = new jsPDF({
+		orientation: 'l',
+		unit: 'in',
+		format: 'letter'
+	});
+
+
 
 //=============================================================================
 // Order of Worship
@@ -70,6 +73,7 @@ doc.text(8.25, 0.7, 'Hebrews 11:8-16', 'center');
 //passage
 doc.setFontSize(10);
 var passage = "8By faith Abraham, when he was called, obeyed by going out to a place which he was to receive for an inheritance; and he went out, not knowing where he was going. 9 By faith he lived as an alien in the land of promise, as in a foreign land, dwelling in tents with Isaac and Jacob, fellow heirs of the same promise; 10 for he was looking for the city which has foundations, whose architect and builder is God. 11 By faith even Sarah herself received ability to conceive, even beyond the proper time of life, since she considered Him faithful who had promised.12 Therefore there was born even of one man, and him as good as dead at that, as many descendants AS THE STARS OF HEAVEN IN NUMBER, AND INNUMERABLE AS THE SAND WHICH IS BY THE SEASHORE.";
+passage += ' asdf ';
 passage += "13 All these died in faith, without receiving the promises, but having seen them and having welcomed them from a distance, and having confessed that they were strangers and exiles on the earth. 14 For those who say such things make it clear that they are seeking a country of their own.15 And indeed if they had been thinking of that country from which they went out, they would have had opportunity to return. 16 But as it is, they desire a better country, that is, a heavenly one. Therefore God is not ashamed to be called their God; for He has prepared a city for them.";
 
 passage = doc.splitTextToSize(passage,  4.9);
