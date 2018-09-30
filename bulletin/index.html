@@ -2,14 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js" integrity="sha384-CchuzHs077vGtfhGYl9Qtc7Vx64rXBXdIAZIPbItbNyWIRTdG0oYAqki3Ry13Yzu" crossorigin="anonymous"></script> -->
 	<link href="https://fonts.googleapis.com/css?family=Abel|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="formStyle.css">
 	<script language="javascript" type="text/javascript" src="jspdf.customfonts.min.js"></script>
 	<script language="javascript" type="text/javascript" src="default_vfs.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="main.js"></script>
+<!-- 	<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+ -->	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="generator.js" charset="UTF-8"></script>
+	<script src="main.js" charset="UTF-8"></script>
 	<title>bulletin</title>
 
 </head>
@@ -22,11 +25,15 @@
 					<th>Assignments:</th>
 					<tr>
 						<td><label for="welcomeName">Welcome:</label></td>
-						<td><input type="text" id="welcomeName" name="welcomeName" placeholder="Presider"></td>
+						<td><input type="text" id="welcomeName" name="welcomeName" placeholder="Pastor"></td>
 					</tr>
 					<tr>
 						<td><label for="worshipTeam">Singing God's Praises:</label></td>
-						<td><input type="text" id="worshipTeam" name="worshipTeam" value="Worship Team"></td>
+						<td><input type="text" id="worshipTeam" name="worshipTeam"></td>
+					</tr>
+					<tr>
+						<td><label for="holyCommunion">Holy Communion</label> (<input type="checkbox" id="showCommunion">show)</td>
+						<td><input type="text" id="holyCommunion" name="holyCommunion" placeholder="Pastor"></td>
 					</tr>
 					<tr>
 						<td><label for="presider">Prayer/Offering; Announcements:</label></td>
@@ -39,6 +46,11 @@
 					<tr>
 						<td><input type="text" id="sermonTitle" name="sermonTitle" class="fullWidth" placeholder="Sermon Title"></td>
 						<td><input type="text" id="sermonVerse" name="sermonVerse" placeholder="Sermon Verse"></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<textarea class="fullWidth" id="sermonPassage" name="sermonPassage" placeholder="Sermon passage goes here."></textarea>
+						</td>
 					</tr>
 					<tr>&nbsp;</tr>
 					<tr>
@@ -85,36 +97,35 @@
 					<th>Announcements:</th>
 					<tr>
 						<td>
-							<input type="text" class="a_title" id="A_1t" placeholder="Announcement Title"><button class="A_1 a_clear button">clear</button>
+							<input type="text" class="a_title" id="A_1t" placeholder="Announcement Title"><button class="A_1 a_clear button" id="A_1c">clear</button>
 							<textarea class="a_desc fullWidth" id="A_1d" placeholder="Description goes here."></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="a_title" id="A_2t" placeholder="Announcement Title"><button class="A_2 a_clear button">clear</button>
+							<input type="text" class="a_title" id="A_2t" placeholder="Announcement Title"><button class="A_2 a_clear button" id="A_2c">clear</button>
 							<textarea class="a_desc fullWidth" id="A_2d" placeholder="Description goes here."></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="a_title" id="A_3t" placeholder="Announcement Title"><button class="A_3 a_clear button">clear</button>
+							<input type="text" class="a_title" id="A_3t" placeholder="Announcement Title"><button class="A_3 a_clear button" id="A_3c">clear</button>
 							<textarea class="a_desc fullWidth" id="A_3d" placeholder="Description goes here."></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="a_title" id="A_4t" placeholder="Announcement Title"><button class="A_4 a_clear button">clear</button>
+							<input type="text" class="a_title" id="A_4t" placeholder="Announcement Title"><button class="A_4 a_clear button" id="A_4c">clear</button>
 							<textarea class="a_desc fullWidth" id="A_4d" placeholder="Description goes here."></textarea>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<input type="submit" id="formSubmit" class="fullWidth button">
+			<input type="submit" id="formSubmit" class="fullWidth button" value="Update Preview">
 		</div>
 		<div id="output">
 			<iframe id="preview" type="application/pdf" src="" width="792" height="1300"></iframe>
 		</div>
 	</div>
-	<script src="generator.js"></script>
 </body>
 </html>
