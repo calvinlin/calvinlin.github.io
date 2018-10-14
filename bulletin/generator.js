@@ -4,6 +4,7 @@ function generateView(doc) {
 	//first page:
 	gen_OrderOfWorship(doc);
 	gen_SermonSection(doc);
+	gen_Ministries(doc);
 
 	doc.addPage();
 
@@ -59,7 +60,7 @@ function gen_OrderOfWorship(doc) {
 
 
 	//left side
-	ctr = 0.9;
+	ctr = 0.8;
 	doc.setFontSize(11);
 	doc.setFontType('normal');
 	doc.text(0.3, inc(), 'Welcome');
@@ -73,7 +74,7 @@ function gen_OrderOfWorship(doc) {
 	doc.text(0.3, inc(), 'Benediction');
 
 	//right side
-	ctr = 0.9;
+	ctr = 0.8;
 	doc.setFontType('italic');
 	doc.text(5.2, inc(), dl.gV('welcomeName'), null, null, 'right');
 	doc.text(5.2, inc(), convSS(dl.gV('worshipTeam')), null, null, 'right');
@@ -87,7 +88,7 @@ function gen_OrderOfWorship(doc) {
 
 
 	ctr = (function() {
-		v = 1.1;
+		v = 1.0;
 		c = 5 + ((hasCommunion)?1:0);
 		for(var i = 0; i++ < c; v += 0.3);
 		return v;
@@ -95,11 +96,61 @@ function gen_OrderOfWorship(doc) {
 
 	doc.setFontType('bolditalic');
 	doc.setFontSize(12);
-	doc.text(2.75, ctr, '"Sermon Title Goes Here!"', null, null, 'center');
+	doc.text(2.75, ctr, dl.gV('sermonTitle'), null, null, 'center');
 	doc.setFontSize(9);
 	doc.setFontType('italic');
-	doc.text(2.75, inc(0.15), 'Book 12:34-56', null, null, 'center');
+	doc.text(2.75, inc(0.15), dl.gV('sermonVerse'), null, null, 'center');
 
+	var disc_1 = '*If you are visiting today, you are our guest and are not expected to give.';
+	var disc_2 = 'The offering is for people who consider GBC their home church.';
+	doc.setFontSize(8.5);
+	doc.text(2.75, 4.15, disc_1, null, null, 'center');
+	doc.text(2.75, 4.30, disc_2, null, null, 'center');
+}
+
+
+function gen_Ministries(doc) {
+
+	doc.setLineWidth(0.01);
+	doc.line(1.2, 4.6, 4.3, 4.6);
+
+	//title
+	doc.setFontSize(17);
+	doc.text(2.75, 5.1, 'WEEKLY MINISTRIES', null, null, 'center');
+
+	var y_counter = 5.6;
+
+	var addMinistry = function(title, time, timeX, desc) {
+		doc.setFontSize(12);
+		doc.setFontType('bold');
+		doc.text(0.3, y_counter, title);
+
+		doc.setFontSize(11);
+		doc.setFontType('italic');
+		doc.text(5.2, y_counter, time, null, null, 'right');
+
+		doc.setFontType('normal');
+		desc = doc.splitTextToSize(desc, 4.9);
+		doc.text(0.3, y_counter+0.20, desc);
+
+		y_counter += (desc.length * 0.18) + 0.37;
+	}
+
+	addMinistry('Saturday Service', 
+		'Saturdays @5pm', 1.8, 
+		'Worship - Sermon - Dinner');
+
+	addMinistry('Grace Student Ministries', 
+		'Saturdays @7:30pm', 2.5, 
+		"Some creative text goes here describing the purpose of this meeting for grade-school students.  Meets at the side chapel.");
+
+	addMinistry('Coffee Hour w/ Pr. Frank', 
+		'2nd Saturdays of the month @7:30pm', 2.5, 
+		"There's coffee, donuts, and a message by Pr. Frank.");
+
+	addMinistry('Young Adult Bible Study', 
+		'Mondays @7:30pm', 2.5,
+		"Join the young professionals and college students to decompress from school and work while exploring the word of God through scripture and books.  Meets in the classrooms.");
 }
 
 
@@ -111,12 +162,12 @@ function gen_SermonSection(doc) {
 	//title
 	doc.setFontType('bold');
 	doc.setFontSize(15);
-	doc.text(8.25, 0.5, 'How to Be a Faith Action Hero', 'center');
+	doc.text(8.25, 0.5, dl.gV('sermonTitle'), 'center');
 
 	//verse
 	doc.setFontType('normal');
 	doc.setFontSize(11);
-	doc.text(8.25, 0.7, 'Hebrews 11:8-16', 'center');
+	doc.text(8.25, 0.7, dl.gV('sermonVerse'), 'center');
 
 
 	//passage
@@ -143,10 +194,8 @@ function gen_Announcements(doc) {
 	doc.text(2.75, 0.5, 'ANNOUNCEMENTS', null, null, 'center');
 
 	var currHeight = 0.95;
-	doc.setFontSize(11);
-	doc.setFontType('normal');
 
-	var bulletPoint = 'data:image/png;base64,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';
+	var bulletPoint = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAa0lEQVQ4jdXUsQmGQAwG0Icg/ONo5QQ2/wCu4jTuoQ5mqTbaiF0i6AfpjneEu4Svp0aHMgP7Y8WGEb8oOBzYWWG0wXJBpyjafhqdn0D766EickMkqS2nPkoqdvexQ9OSPnrpywEqievrHdkBrfY8OOnIBIUAAAAASUVORK5CYII=';
 
 	for(var i = 1; i <= 4; i++) {
 		var title 	= $('#A_'+i+'t').val();
@@ -154,22 +203,18 @@ function gen_Announcements(doc) {
 
 		if((title || desc || 'blank') == 'blank') continue;
 
-		doc.setFont('helvetica', 'normal');
-		desc = doc.splitTextToSize(desc, 4.9);
-
-		console.log('title:\t' + title + '\ndesc:\t' + desc + ' (' + desc.length + " lines)\n");
-		
-		doc.setFontSize(13);
+		doc.setFontSize(11);
 		doc.setFontType('bold');
 		doc.text(0.6, currHeight, title);
-		doc.addImage(bulletPoint, 'JPEG', 0.3, currHeight-0.15, 0.18, 0.18);
+		doc.addImage(bulletPoint, 'JPEG', 0.35, currHeight-0.12, 0.15, 0.15);
 
-		doc.setFontSize(11);
+		doc.setFontSize(10);
 		doc.setFontType('normal');
-		doc.text(0.6, currHeight+0.2, desc);
+		desc = doc.splitTextToSize(desc, 4.7);
+		doc.text(0.6, currHeight+0.18, desc);
 
 		//updates height for next iteration
-		currHeight += (desc.length * 0.18) + 0.33;
+		currHeight += (desc.length * 0.16) + 0.30;
 	}
 }
 

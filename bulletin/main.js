@@ -17,7 +17,7 @@ var dl = {
 	ss 			: window.sessionStorage,							//because typing out the whole thing sucks
 	gSS			: (a)=>{return dl.ss[a] ? dl.ss[a] : ''},			//gets the requested parameter from ss
 
-	ls 			: window.localStorage,								//ditto
+//	ls 			: window.localStorage,								//ditto
 	gLS			: (a)=>{return dl.ss[a] ? dl.ss[a] : ''},			//more ditto (also a mercedes)
 
 	debug 		: (s)=>{dl.ss['DB'] = s},							//set this to true to enable debug output in console
@@ -98,6 +98,8 @@ function setDefaults() {
 	$('#holyCommunion').val(pastor);
 	$('#pastor').val(pastor);
 	$('#worshipTeam').val('Worship Team');
+	$('#sermonTitle').val('Sermon Title Goes Here');
+	$('#sermonVerse').val('Verse 1:23-45');
 }
 
 
