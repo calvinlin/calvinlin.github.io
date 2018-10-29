@@ -49,7 +49,11 @@ table th {
 #formSubmit {
 	text-align:  	center;
 	height:			40px;
-	background-color: 	green;
+	background: 	#006E6D;
+
+	border: 		none;
+	color:			white;
+	box-shadow:  	1px 1px 2px gray;
 }
 
 .css_clear {
@@ -115,5 +119,10 @@ td:first-child {
 .a_clear {
 	width: 			75px;
 	height:			25px;
-	background:		yellow;
+	background:		#F1EA7F;
+	color: 			black;
+
+	border: 		none;
+	border-radius:  15px;
+	box-shadow:  	1px 1px 2px gray;
 }
