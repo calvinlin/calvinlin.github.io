@@ -3,15 +3,15 @@ function generateView(doc) {
 
 	//first page:
 	gen_OrderOfWorship(doc);
-	gen_Welcome(doc);
-	gen_SermonSection(doc);
+	//gen_SermonSection(doc);
+	gen_Ministries(doc);
+	gen_Announcements(doc);
 
 	doc.addPage();
 
+	gen_Welcome(doc);
 	gen_StaticComponents(doc);
 	gen_Date(doc);
-	gen_Announcements(doc);
-	gen_Ministries(doc);
 
 	//gen_OtherStuffs(doc);
 
@@ -83,7 +83,7 @@ function gen_OrderOfWorship(doc) {
 	doc.text(0.3, inc(), 'Singing God\'s Praises');
 	if(hasCommunion)
 		doc.text(0.3, inc(), 'Holy Communion');
-	doc.text(0.3, inc(), 'Prayer & Giving Back to God*');
+	doc.text(0.3, inc(), 'Giving Back to God*');
 	doc.text(0.3, inc(), 'Announcements');
 	doc.text(0.3, inc(), 'Sermon');
 	doc.text(0.3, inc(0.7), 'Song of Response');
@@ -96,7 +96,7 @@ function gen_OrderOfWorship(doc) {
 	doc.text(5.2, inc(), convSS(dl.gV('worshipTeam')), null, null, 'right');
 	if(hasCommunion)
 		doc.text(5.2, inc(), dl.gV('pastor'), null, null, 'right');
-	doc.text(5.2, inc(), dl.gV('presider'), null, null, 'right');
+	doc.text(5.2, inc(), dl.gV('worshipTeam'), null, null, 'right');
 	doc.text(5.2, inc(), dl.gV('presider'), null, null, 'right');
 	doc.text(5.2, inc(), dl.gV('pastor'), null, null, 'right');
 	doc.text(5.2, inc(0.7), dl.gV('worshipTeam'), null, null, 'right');
@@ -133,15 +133,15 @@ function gen_OrderOfWorship(doc) {
 function gen_Ministries(doc) {
 
 	//divider line
-	doc.setLineWidth(0.01);
-	doc.line(1.2, 4.8, 4.3, 4.8);
+	//doc.setLineWidth(0.01);
+	//doc.line(1.2, 4.8, 4.3, 4.8);
 
 	//title
 	doc.setFontSize(17);
-	doc.setFontType('italic');
-	doc.text(2.75, 5.2, 'WEEKLY MINISTRIES', null, null, 'center');
+	doc.setFontType('normal');
+	doc.text(2.75, 4.9, 'WEEKLY MINISTRIES', null, null, 'center');
 
-	var y_counter = 5.6;
+	var y_counter = 5.4;
 
 	var addMinistry = function(title, time, timeX, desc) {
 		doc.setFontSize(11);
@@ -181,14 +181,16 @@ function gen_Welcome(doc) {
 	//title
 	doc.setFontType('bold');
 	doc.setFontSize(15);
-	doc.text(8.25, 0.5, 'Welcome to GBC!', 'center');			//top right
+	// doc.text(8.25, 0.5, 'Welcome to GBC!', 'center');			//top right
+	doc.text(2.75, 0.5, 'Welcome to GBC!', 'center');			//top left
 
 	//copy
 	doc.setFontType('normal');
 	doc.setFontSize(11);
 	var copy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam eget felis eget nunc lobortis mattis aliquam. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Sed blandit libero volutpat sed.";
-	copy = doc.splitTextToSize(copy,  4.8);
-	doc.text(5.8, 0.8, copy);
+	copy = doc.splitTextToSize(copy,  5.0);
+	// doc.text(5.8, 0.8, copy);
+	doc.text(0.3, 0.8, copy);
 }
 
 
@@ -284,8 +286,8 @@ function gen_Date(doc) {
 function gen_Announcements(doc) {
 	doc.setFontType('normal');
 	doc.setFontSize(17);
-	doc.text(2.75, 0.5, 'ANNOUNCEMENTS', null, null, 'center');
-	// doc.text(8.25, 0.5, 'ANNOUNCEMENTS', null, null, 'center');
+	// doc.text(2.75, 0.5, 'ANNOUNCEMENTS', null, null, 'center');
+	doc.text(8.25, 0.5, 'ANNOUNCEMENTS', null, null, 'center');
 
 
 	var currHeight = 0.9;
@@ -301,18 +303,19 @@ function gen_Announcements(doc) {
 
 		doc.setFontSize(11);
 		doc.setFontType('bold');
-		doc.text(0.5, currHeight, title);
-		// doc.text(5.8, currHeight, title);
-		doc.addImage(bulletPoint, 'JPEG', 0.25, currHeight-0.12, 0.15, 0.15);
+		// doc.text(0.5, currHeight, title);
+		doc.text(6.15, currHeight, title);
+		// doc.addImage(bulletPoint, 'JPEG', 0.25, currHeight-0.12, 0.15, 0.15);
+		doc.addImage(bulletPoint, 'JPEG', 5.9, currHeight-0.12, 0.15, 0.15);
 
 		doc.setFontSize(10);
 		doc.setFontType('normal');
-		desc = doc.splitTextToSize(desc, 4.7);
-		doc.text(0.5, currHeight+0.18, desc);
-		// doc.text(5.8, currHeight+0.18, desc);
+		desc = doc.splitTextToSize(desc, 4.4);
+		// doc.text(0.5, currHeight+0.18, desc);
+		doc.text(6.15, currHeight+0.20, desc);
 
 		//updates height for next iteration
-		currHeight += (desc.length * 0.16) + 0.30;
+		currHeight += (desc.length * 0.16) + 0.38;
 	}
 }
 
