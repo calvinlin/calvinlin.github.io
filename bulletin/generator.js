@@ -180,17 +180,17 @@ function gen_Ministries(doc) {
 function gen_Welcome(doc) {
 	//title
 	doc.setFontType('bold');
-	doc.setFontSize(15);
+	doc.setFontSize(16);
 	// doc.text(8.25, 0.5, 'Welcome to GBC!', 'center');			//top right
 	doc.text(2.75, 0.5, 'Welcome to GBC!', 'center');			//top left
 
 	//copy
 	doc.setFontType('normal');
-	doc.setFontSize(11);
-	var copy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam eget felis eget nunc lobortis mattis aliquam. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Sed blandit libero volutpat sed.";
+	doc.setFontSize(12);
+	var copy = "If you are joining us for the first time today at Grace Bible Church, we hope you will find our church a place where you can build real friendships, gain practical biblical wisdom for living, and experience the life-changing grace of God.  \n\nWe exist to serve the diverse communities of Southern California and intend to be a church where people of all cultures can come to worship the true and living God.  We not only believe that Jesus Christ alone can make the difference in a broken world but also are committed to seeing your life being transformed as you come to encounter Jesus as your greatest treasure in life.  \n\nRegardless of where you are on your journey, we hope you will find our church a place to grow and belong.  Thank you for coming!";
 	copy = doc.splitTextToSize(copy,  5.0);
 	// doc.text(5.8, 0.8, copy);
-	doc.text(0.3, 0.8, copy);
+	doc.text(0.3, 1.0, copy);
 }
 
 

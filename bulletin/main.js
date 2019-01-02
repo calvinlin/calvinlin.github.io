@@ -34,6 +34,7 @@ function setDates() {
 
 	getMonth		= (m) => {
 		switch(m) {
+			case -1 : return "December";	break;
 			case 0	: return "January"; 	break;
 			case 1	: return "February";	break;
 			case 2	: return "March";		break;
