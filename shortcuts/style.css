@@ -1,0 +1,52 @@
+body {
+	font-family: 	'Roboto', sans-serif;
+	background-color:  #F5F5F5;
+}
+
+#content {
+	max-width:  	1100px;
+	margin: 		0 auto;
+	padding: 		0 50px;
+	text-align:  	center;
+}
+
+#title {
+	font-size:  	50px;
+	font-family:  	'Abel', sans-serif;
+	text-align:  	center;
+
+	margin:			80px 0 50px;
+}
+
+.section {
+	width: 			calc(33% - 70px);
+	min-width:  	250px;
+	padding: 		0 25px;
+	margin: 		10px;
+	background-color: #DDD;
+	height: 		300px;
+	display: 		inline-block;
+	vertical-align: top;
+	text-align:  	left;
+}
+
+.sectionHeader {
+	font-weight:  	bold;
+	font-size:  	21px;
+	margin:			25px 0 15px;
+}
+
+.sectionContents {
+	font-size:  	17px;
+	line-height:  	22px;
+	margin: 		3px ;
+}
+
+.club {
+	display:  		inline-block;
+	width:			50px;
+}
+
+a {
+	color: 			blue;
+}
