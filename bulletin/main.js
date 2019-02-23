@@ -99,7 +99,7 @@ function setDefaults() {
 	$('#holyCommunion').val(pastor);
 	$('#pastor').val(pastor);
 	$('#worshipTeam').val('Worship Team');
-	$('#presider').val('Pastor David Lee');
+	$('#presider').val('Andrew Wung');
 	$('#sermonTitle').val('Sermon Title Goes Here');
 	$('#sermonVerse').val('Verse 1:23-45');
 
