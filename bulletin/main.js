@@ -28,9 +28,7 @@ var dl = {
 	date 		: []
 };
 
-
-function setDates() {
-	formatDate 		= (d) => {return (d.getMonth()+1) + '/' + (d.getDate()) + '/' + (d.getFullYear()+1).toString().substring(2,4);};
+	formatDate 		= (d) => {return (d.getMonth()+1) + '/' + (d.getDate()) + '/' + (d.getFullYear()).toString().substring(2,4);};
 
 	getMonth		= (m) => {
 		switch(m) {
@@ -59,6 +57,8 @@ function setDates() {
 		if (j == 3 && k != 13) return i + "rd";
 		return i + "th";
 	}
+
+function setDates() {
 
 	dl.date['p2']	= new Date();
 	dl.date['p1']	= new Date();
@@ -91,7 +91,7 @@ function setDates() {
 function setDefaults() {
 	//set date fields
 	$('#monthName').val(dl.date['lm']);
-	$('#date2Name').val(formatDate(dl.date['p1']));
+	// $('#date2Name').val(formatDate(dl.date['p1']));
 	$('#date1Name').val(formatDate(dl.date['p2']));
 
 	var pastor = 'Pastor David Lee';
