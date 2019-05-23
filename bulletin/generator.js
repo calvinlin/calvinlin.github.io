@@ -3,7 +3,6 @@ function generateView(doc) {
 
 	//first page:
 	gen_OrderOfWorship(doc);
-	//gen_SermonSection(doc);
 	gen_Ministries(doc);
 	gen_Announcements(doc);
 	gen_Tithes(doc);
@@ -19,38 +18,6 @@ function generateView(doc) {
 
 	$("#preview").attr("src", doc.output('datauristring'));
 }
-
-
-convSS = (str)=>{
-	var s = str;
-	s = s.split('0').join('⁰');
-	s = s.split('1').join('¹');
-	s = s.split('2').join('²');
-	s = s.split('3').join('³');
-	s = s.split('4').join('⁴');
-	s = s.split('5').join('⁵');
-	s = s.split('6').join('⁶');
-	s = s.split('7').join('⁷');
-	s = s.split('8').join('⁸');
-	s = s.split('9').join('⁹');
-	return s;
-}
-
-invConvSS = (str)=>{
-	var s = str;
-	s = s.split('⁰').join('0');
-	s = s.split('¹').join('1');
-	s = s.split('²').join('2');
-	s = s.split('³').join('3');
-	s = s.split('⁴').join('4');
-	s = s.split('⁵').join('5');
-	s = s.split('⁶').join('6');
-	s = s.split('⁷').join('7');
-	s = s.split('⁸').join('8');
-	s = s.split('⁹').join('9');
-	return s;
-}
-
 
 
 //=============================================================================
@@ -95,7 +62,7 @@ function gen_OrderOfWorship(doc) {
 	ctr = 0.8;
 	doc.setFontType('italic');
 	doc.text(5.2, inc(), dl.gV('welcomeName'), null, null, 'right');
-	doc.text(5.2, inc(), convSS(dl.gV('worshipTeam')), null, null, 'right');
+	doc.text(5.2, inc(), dl.gV('worshipTeam'), null, null, 'right');
 	if(hasCommunion)
 		doc.text(5.2, inc(), dl.gV('pastor'), null, null, 'right');
 	doc.text(5.2, inc(), dl.gV('worshipTeam'), null, null, 'right');
@@ -195,87 +162,6 @@ function gen_Welcome(doc) {
 	doc.text(0.3, 1.0, copy);
 }
 
-
-//=============================================================================
-// Sermon Section
-//=============================================================================
-function gen_SermonSection(doc) {
-
-	//divider line
-	doc.setLineWidth(0.01);
-	doc.line(6.75, 2.4, 9.75, 2.4);
-
-	//title
-	doc.setFontType('bold');
-	doc.setFontSize(15);
-	doc.text(8.25, 2.8, dl.gV('sermonTitle'), 'center');		//mid right
-	// doc.text(8.25, 0.5, dl.gV('sermonTitle'), 'center');		//top right
-	// doc.text(2.75, 4.7, dl.gV('sermonTitle'), 'center');		//bottom left
-
-	//verse
-	doc.setFontType('normal');
-	doc.setFontSize(11);
-	doc.text(8.25, 3.0, dl.gV('sermonVerse'), 'center');		//mid right
-	// doc.text(8.25, 0.7, dl.gV('sermonVerse'), 'center');		//top right
-	// doc.text(2.75, 4.9, dl.gV('sermonVerse'), 'center');		//bottom left
-
-	//passage
-	doc.setFontSize(10);
-	var passage = "8By faith Abraham, when he was called, obeyed by going out to a place which he was to receive for an inheritance; and he went out, not knowing where he was going. 9 By faith he lived as an alien in the land of promise, as in a foreign land, dwelling in tents with Isaac and Jacob, fellow heirs of the same promise; 10 for he was looking for the city which has foundations, whose architect and builder is God. 11 By faith even Sarah herself received ability to conceive, even beyond the proper time of life, since she considered Him faithful who had promised.12 Therefore there was born even of one man, and him as good as dead at that, as many descendants AS THE STARS OF HEAVEN IN NUMBER, AND INNUMERABLE AS THE SAND WHICH IS BY THE SEASHORE.";
-	passage += ' asdf ';
-	passage += "13 All these died in faith, without receiving the promises, but having seen them and having welcomed them from a distance, and having confessed that they were strangers and exiles on the earth. 14 For those who say such things make it clear that they are seeking a country of their own.15 And indeed if they had been thinking of that country from which they went out, they would have had opportunity to return. 16 But as it is, they desire a better country, that is, a heavenly one. Therefore God is not ashamed to be called their God; for He has prepared a city for them.";
-
-
-	var x = 5.8;
-	var y = 3.4;
-	checkPosition = function(str) {
-		var cost = (doc.getTextWidth(str));
-		if((x+cost) > 10.6) {
-			x = 5.8;
-			y += 0.18;
-		}
-	}
-
-	var words = passage.split(' ');
-	for(var i = 0; i < words.length; i++) {
-
-		//increments to next line if necessary
-		checkPosition(words[i]);
-
-		//current word contains a number
-		if(/\d/.test(words[i])) {
-			var num = words[i].match(/\d+/);
-			var strArr = words[i].split(num);
-
-			//adjusts number within word
-			for(var j = 0; j < strArr.length; j++) {
-				//for each non-first segment implement superscript formatting
-				if(j != 0) {
-					doc.setFontSize(7);
-					doc.text(x, y-0.04, num);
-					x += doc.getTextWidth(num.toString()) + 0.02;
-				}
-
-				//implement NaN words as normal
-				doc.setFontSize(10);
-				doc.text(x, y, strArr[j]);
-				if(strArr[j]) x += doc.getTextWidth(strArr[j] + ' ');
-			}
-		}
-
-		//current word does not contain a number
-		else {
-			doc.setFontSize(10);
-			doc.text(x, y, words[i]);
-			x += (doc.getTextWidth(words[i] + ' '));
-		}
-	}
-
-	//passage = doc.splitTextToSize(passage,  4.8);
-	//doc.text(5.8, 3.4, passage);		//mid right
-	// doc.text(5.8, 1.1, passage);		//top right
-	// doc.text(0.3, 5.2, passage);		//bottom left
-}
 
 function gen_Tithes(doc) {
 	//divider line
@@ -394,36 +280,5 @@ function gen_StaticComponents(doc) {
 	doc.text(6.55, 8.07, '@grace.bible.church');
 	doc.addImage(instIcon, 'JPEG', 6.2, 7.9, 0.25, 0.25);
 }
-
-/*
-doc.setFont("times");
-doc.setFontType("normal");
-doc.text(105, 80, 'This is centred text.', null, null, 'center');
-doc.text(105, 90, 'And a little bit more underneath it.', null, null, 'center');
-doc.text(200, 100, 'This is right aligned text', null, null, 'right');
-doc.text(200, 110, 'And some more', null, null, 'right');
-doc.text(20, 120, 'Back to left');
-
-doc.text(20, 140, '10 degrees rotated', null, 10);
-doc.text(20, 160, '-10 degrees rotated', null, -10);
-*/
-
-
-// $.ajax({
-// 	url: 'http://labs.bible.org/api/?passage=John%203:16&type=json',
-// 	type: 'GET',
-// 	crossDomain: true,
-// 	dataType:'jsonp',
-// 	success: function(data) {
-// 		console.log(data);
-// 	},
-// 	error: function() {
-// 		alert('Failed!');
-// 	}
-// });
-
-
-
-
 
 
