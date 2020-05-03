@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Created By: 		Calvin
 // Initial Launch: 	1/7/17
-// Last Updated: 	11/5/17
+// Last Updated: 	5/3/20
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Individual Total Calculation:
@@ -23,7 +23,7 @@ $(function() {
 	initEvents();
 
 	if(isMobilePhone) {
-		$('#subTitle').html('i hope this works. - calvin');
+		$('#subTitle').html('i hope this works.');
 	}
 });
 
@@ -31,14 +31,18 @@ var formIsValid = true;
 
 function initEvents() {
 	$('#addPerson').on('click', function() {
-		addPerson();
+		$('.newPerson').clone().removeClass('newPerson').addClass('person').insertBefore('.newPerson');
+		updateAll();
 	});
 
 	$('#personTable').on('click', '.deletePerson', function() {
-		if($('.person').length > 1) removePerson($(this));
+		if($('.person').length > 1) 
+			$(this).parent().parent().remove();
+		updateAll();
 	});
 
-	$('input.num').on('input', function() {
+	$(document).on('input', 'input.num', function() {
+		console.info('input:\t' + $(this).val());
 		if(calcInput($(this).val())){
 			$(this).removeClass('invalidInput');
 			updateAll();
@@ -47,7 +51,7 @@ function initEvents() {
 			$(this).addClass('invalidInput');
 	});
 
-	$('input.num').on('blur', function() {
+	$(document).on('blur', 'input.num', function() {
 		var v = $(this).val();
 		$(this).attr('istr', v);
 
@@ -58,10 +62,13 @@ function initEvents() {
 			$(this).removeClass('invalidInput');
 			$(this).val(calcInput(v));
 		}
+
+		updateAll();
 	});
 
-	$('input.num').on('focus', function() {
-		$(this).val($(this).attr('istr'));
+	$(document).on('focus','input.num',  function() {
+		if(!$(this).hasClass('invalidInput')) 
+			$(this).val($(this).attr('istr'));
 	});
 
 	$(document).on('click', 'input[type="button"]', function() {
@@ -94,17 +101,6 @@ function getDate() {
 }
 
 
-//=================================================================================================
-
-function addPerson() {
-	$('.newPerson').clone().removeClass('newPerson').addClass('person').insertBefore('.newPerson');
-}
-
-function removePerson(elem) {
-
-	elem.parent().parent().remove();
-	updateAll();
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -137,6 +133,12 @@ function updateAll() {
 	// 	if(isNan($(this).val()) && !val) 
 	// 		break;
 	// });
+
+	updateSubTotal();
+	updateTotal();
+	updatePercentCost();
+	updateAddlCost();
+	updateIndividualTotal();
 }
 
 
@@ -196,6 +198,7 @@ function updateAddlCost() {
 	var tax 		= $('#tax').val();
 	var tip 		= $('#tip').val();
 	var credits	 	= $('#credits').val();	
+
 	var fees 		= 0;
 	fees 			+= (tax == '') 		? 0 : convFloat(tax);
 	fees 			+= (tip == '')		? 0 : convFloat(tip);
