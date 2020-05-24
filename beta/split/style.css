@@ -1,7 +1,7 @@
 
 body {
 	background: 	#EEE;
-	font-family: 	'Oswald', sans-serif;
+	font-family: 	'Jost', sans-serif;
 }
 
 input::-webkit-outer-spin-button,
@@ -26,6 +26,7 @@ input::-webkit-inner-spin-button {
 	width:  		100%;
 	margin-bottom: 	50px;
 	text-align:  	center;
+	font-family: 	'Oswald', sans-serif;
 }
 
 #pageTitle span {
@@ -66,7 +67,7 @@ input::-webkit-inner-spin-button {
 
 table {
 	display:  		inline-block;
-	border: 		3px solid #333;
+	border: 		2px solid #333;
 	padding: 		20px;
 }
 
@@ -92,7 +93,8 @@ table input {
 
 #bottomBtn input {
 	border: 		none;
-	padding:  		7px 15px;
+	border-radius:	5px;
+	padding:  		10px 25px;
 
 	font-size:  	17px;
 	line-height:  	17px;

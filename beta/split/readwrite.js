@@ -4,6 +4,7 @@ function saveInfo() {
 
 	var pStr = '';
 	var tStr = '';
+	var saveName = prompt('Enter a name to save data under:');
 
 	pStr += $('#subTotal').text() + ':';
 	pStr += $('#tax').text() + ':';
@@ -33,9 +34,3 @@ function saveInfo() {
 
 
 
-function getCookie() {
-
-
-
-	return 
-}

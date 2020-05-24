@@ -25,6 +25,8 @@ $(function() {
 	if(isMobilePhone) {
 		$('#subTitle').html('i hope this works.');
 	}
+
+	aprilFools();
 });
 
 var formIsValid = true;
@@ -71,8 +73,20 @@ function initEvents() {
 			$(this).val($(this).attr('istr'));
 	});
 
-	$(document).on('click', 'input[type="button"]', function() {
-		alertMessage();
+	// $(document).on('click', 'input[type="button"]', function() {
+	// 	alertMessage();
+	// });
+
+	$(document).on('click', '#reset', function() {
+
+		if(confirm('Are you sure you want to reset?')) {
+			$('.person').remove();
+			$('#addPerson').click();
+
+			$('#tax').val('').attr('istr', '');
+			$('#tip').val('').attr('istr', '');
+			$('#credits').val('').attr('istr', '');
+		}
 	});
 
 	$(document).on('click', '#notify', function() {
@@ -100,6 +114,14 @@ function getDate() {
 	return mm+'/'+dd+'/'+yy;
 }
 
+function aprilFools() {
+	var d = new Date();
+	var mm = d.getMonth();
+	var dd = d.getDate();
+	
+	if(mm == 3 && dd == 1)
+		$('#container').css('transform', 'rotate(120deg)');
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
