@@ -89,6 +89,14 @@ function initEvents() {
 		}
 	});
 
+	$(document).on('click', '#save', function() {
+		saveInfo(prompt('Enter a name to save data under:'));
+	});
+
+	$(document).on('click', '#recall', function() {
+		readInfo(prompt('Enter a name to recall data:'));
+	});
+
 	$(document).on('click', '#notify', function() {
 		var email 	= 'SomeRandomEmail@DontSendThis.com';
 		var subject = getDate() + '- Restaruant Name (TEST)';
