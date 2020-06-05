@@ -26,6 +26,15 @@ $(function() {
 		$('#subTitle').html('i hope this works.');
 	}
 
+	var qsp = window.location.search;
+	if(qsp.length > 0) {
+		qsp = decodeURIComponent(qsp.substr(1));
+
+		if(qsp.indexOf('d=') > -1) {
+			generateSave(qsp.split('d=')[1].split('&')[0]);
+		}
+	}
+
 	aprilFools();
 });
 

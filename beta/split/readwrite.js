@@ -22,8 +22,6 @@ function saveInfo(n) {
 	//remove trailing '$$'
 	data = data.slice(0, -2);
 
-	console.log(n);
-	console.log(data);
 	localStorage.setItem(n, data);
 }
 
@@ -40,28 +38,29 @@ function readInfo(k) {
 		return false;
 	}
 
-	//save data
-	var data = localStorage.getItem(k);
+	generateSave(localStorage.getItem(k));
+
+}
+
+
+function generateSave(data) {
 
 	if(data.indexOf('%%') == -1 && data.indexOf('$$') == -1) {
 		alert('data invalid!');
 		return false;
 	}
 
-	var data = data.split('%%');
+	data = data.split('%%');
 
 	var date = data[0];
 	var fees = data[1].split(':');
 	var people = data[2].split('$$');
-	console.log('date:\t' + date);
-	console.log('fees:\t' + fees);
-	console.log('person\t' + people);
 
 	$('#tax').val(fees[0]);
 	$('#tip').val(fees[1]);
 	$('#credits').val(fees[2]);
 
-	//reset table
+	//reset people table
 	$('.person').remove();
 
 	var pInd = 1;
