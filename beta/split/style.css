@@ -11,6 +11,45 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+#share_modal {
+	margin: 		0;
+	position: 		absolute;
+	top: 			50%;
+	left: 			50%;
+	-ms-transform: 	translate(-50%, -50%);
+	transform: 		translate(-50%, -50%);
+
+	padding:		20px;
+	border-radius:  20px;
+	text-align:		center;
+	background:  	white;
+	box-shadow:  	0 0 15px 5px #AAA;
+}
+
+#share_modal img {
+	margin-top: 	10px;
+}
+
+#share_modal input {
+	margin-top:		20px;
+
+	border: 		none;
+	border-radius:	5px;
+	padding:  		10px 25px;
+
+	font-size:  	17px;
+	line-height:  	17px;
+	color: 			#EEE;
+}
+
+#share_close {
+	background:		#AA3939;
+}
+
+#share_email {
+	background:  	#27566B;
+}
+
 #container {
 	width:  		1000px;
 	height: 		600px;
@@ -105,8 +144,8 @@ table input {
 	background:  	#AA3939;
 }
 
-#notify {
-	background: 	#CAB910;
+#share {
+	background: 	#297A4A;
 }
 
 #save, #recall {

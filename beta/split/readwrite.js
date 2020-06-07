@@ -2,27 +2,7 @@
 
 function saveInfo(n) {
 
-	var data = '';
-
-	data += getDate() + '%%';
-
-	data += $('#tax').val() + ':';
-	data += $('#tip').val() + ':';
-	data += $('#credits').val();
-	data += '%%';
-	
-	$('.person').each(function() {
-		data += $(this).find('.personName').val() + ':';
-		data += $(this).find('.itemCost').val() + ':';
-		data += $(this).find('.addlCost').val() + ':';
-		data += $(this).find('.addlCost').val();
-		data += '$$';
-	});
-
-	//remove trailing '$$'
-	data = data.slice(0, -2);
-
-	localStorage.setItem(n, data);
+	localStorage.setItem(n, generateData());
 }
 
 
@@ -42,6 +22,27 @@ function readInfo(k) {
 
 }
 
+function generateData() {
+	var data = '';
+
+	data += getDate() + '%%';
+
+	data += $('#tax').val() + ':';
+	data += $('#tip').val() + ':';
+	data += $('#credits').val();
+	data += '%%';
+	
+	$('.person').each(function() {
+		data += $(this).find('.personName').val() + ':';
+		data += $(this).find('.itemCost').val() + ':';
+		data += $(this).find('.addlCost').val() + ':';
+		data += $(this).find('.addlCost').val();
+		data += '$$';
+	});
+
+	//remove trailing '$$'
+	return data.slice(0, -2);
+}
 
 function generateSave(data) {
 

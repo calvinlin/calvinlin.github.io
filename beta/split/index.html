@@ -82,12 +82,20 @@
 			<div id="bottomBtn">
 				<input type="button" 	class="clickElem" 	id="save" 		value="save">
 				<input type="button" 	class="clickElem" 	id="recall" 	value="recall">
-				<!-- <input type="button" 	class="clickElem"	id="notify"		value="notify"> -->
+				<input type="button" 	class="clickElem"	id="share"		value="share">
 				<input type="reset" 	class="clickElem" 	id="reset" 		value="reset">
 			</div>
 		</form>
 
 
+	</div>
+	<div id="share_modal">
+		<div id="qr_desc">Scan the QR code to see this bill!</div>
+		<img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=200x200" width="200" height="200" />
+		<div>
+			<input type="button" class="clickElem" id="share_email" value="email">
+			<input type="button" class="clickElem" id="share_close" value="close">
+		</div>
 	</div>
 </body>
 </html>

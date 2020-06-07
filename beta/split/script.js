@@ -22,6 +22,8 @@ var isMobilePhone = false;
 $(function() {
 	initEvents();
 
+	$('#share_modal').hide();
+
 	if(isMobilePhone) {
 		$('#subTitle').html('i hope this works.');
 	}
@@ -82,10 +84,6 @@ function initEvents() {
 			$(this).val($(this).attr('istr'));
 	});
 
-	// $(document).on('click', 'input[type="button"]', function() {
-	// 	alertMessage();
-	// });
-
 	$(document).on('click', '#reset', function() {
 
 		if(confirm('Are you sure you want to reset?')) {
@@ -106,6 +104,19 @@ function initEvents() {
 		readInfo(prompt('Enter a name to recall data:'));
 	});
 
+	$(document).on('click', '#share', function() {
+		var url = 'https://api.qrserver.com/v1/create-qr-code/?data=';
+		url += window.location.href + '?d=' + generateData();
+		url += '&amp;size=50x50';
+    	$('#barcode').attr('src', url);
+
+    	$('#share_modal').fadeIn();
+	});
+
+	$(document).on('click', '#share_close', function() {
+		$('#share_modal').fadeOut();
+	});
+
 	$(document).on('click', '#notify', function() {
 		var email 	= 'SomeRandomEmail@DontSendThis.com';
 		var subject = getDate() + '- Restaruant Name (TEST)';
@@ -113,10 +124,6 @@ function initEvents() {
 
 		window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
 	});
-}
-
-function alertMessage() {
-	alert('Feature still in development :(');
 }
 
 function getDate() {
