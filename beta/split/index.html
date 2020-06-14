@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="personTable.css">
 	<link rel="stylesheet" type="text/css" href="feeTable.css">
+	<link rel="stylesheet" type="text/css" href="shareModal.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="script.js"></script>
 	<script src="calculator.js"></script>
@@ -33,14 +34,14 @@
 				<tbody>
 
 					<tr class="person">
-						<td><div class="deletePerson clickElem">x</span></td>
+						<td><div class="deletePerson clickElem">x</div></td>
 						<td><input class="personName" type="text"></td>
 						<td><input class="itemCost num" type="text"></td>
 						<td><input class="addlCost num" type="number" disabled><input class="percent" type="text" hidden></td>
 						<td><input class="individualTotal num" type="number" disabled></td>
 					</tr>
 					<tr class="newPerson">
-						<td><div class="deletePerson clickElem">x</span></td>
+						<td><div class="deletePerson clickElem">x</div></td>
 						<td><input class="personName" type="text"></td>
 						<td><input class="itemCost num" type="text"></td>
 						<td><input class="addlCost num" type="number" disabled><input class="percent" type="text" hidden></td>
@@ -77,7 +78,7 @@
 					</tr>
 				</tbody>
 			</table>
-			
+
 
 			<div id="bottomBtn">
 				<input type="button" 	class="clickElem" 	id="save" 		value="save">
@@ -93,9 +94,90 @@
 		<div id="qr_desc">Scan the QR code to see this bill!</div>
 		<img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=200x200" width="200" height="200" />
 		<div>
-			<input type="button" class="clickElem" id="share_email" value="email">
+			<input type="button" class="clickElem" id="share_email" value="email (beta)">
 			<input type="button" class="clickElem" id="share_close" value="close">
 		</div>
+	</div>
+
+	<div id="emailContent" style="display:none;">
+		<table style="border: 1px solid black; padding: 25px 15px; font-family: Arial;" cellpadding="0" cellspacing="0" >
+			<thead>
+				<tr>
+					<th colspan="2" style="font-size: 20px">SPLIT</th>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;">Restaurant Name</td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th style="width:150px; text-align: left">Name:</th>
+					<th style="text-align: right;">Ind. Total:</th>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">person1</td>
+					<td style="width:80px; text-align: right">12.34</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">person2</td>
+					<td style="width:80px; text-align: right">23.45</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">person3</td>
+					<td style="width:80px; text-align: right">34.56</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left" colspan="2">__________</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left" colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Subtotal:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Tax:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Tip:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Credits:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<th style="width:150px; text-align: left">TOTAL:</th>
+					<th style="text-align: right;">99.99</th>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr rowspan="2">
+					<td colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="text-align: center" colspan="2">
+						This was generated via <a href="https://calvinlin.github.io/split">calvinlin.github.io/split</a>.  For more info on the calculations, click or scan the QR code below:
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="text-align: center" colspan="2">
+						<a href="https://calvinlin.github.io/split">
+							<img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=https://calvinlin.github.io/split;size=100x100" alt="" title="HELLO" width="100" height="100" />
+						</a>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+
 	</div>
 </body>
 </html>

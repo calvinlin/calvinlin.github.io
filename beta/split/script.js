@@ -117,12 +117,14 @@ function initEvents() {
 		$('#share_modal').fadeOut();
 	});
 
-	$(document).on('click', '#notify', function() {
-		var email 	= 'SomeRandomEmail@DontSendThis.com';
-		var subject = getDate() + '- Restaruant Name (TEST)';
-		var body 	= 'Feature still in development :(';
+	$(document).on('click', '#share_email', function() {
+		var email 	= '';
+		var subject = 'Food Invoice: - Restaruant Name (' + getDate() + ')';
+		var body 	= 'content goes here?';
+		var contents = 'mailto:' + email + '?subject=' + subject + '&body=' + body
 
-		window.open('mailto:' + email + '?subject=' + subject + '&body=' + body);
+		$('<iframe id="emailFrame" src="' + contents + '">').appendTo('body').css("display", "none");
+		$('#emailFrame').remove();
 	});
 }
 

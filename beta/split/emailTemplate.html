@@ -1,0 +1,174 @@
+
+
+<style type="text/css">
+	table {
+		/*padding: 25px 15px;  cant' use, will cause email issues*/
+		border: 1px solid black;
+		font-family: Arial;
+		display:  none;
+	}
+
+	td:first-child, th:first-child {
+		width:	 		20px;
+		max-width: 		20px;
+	}
+
+	td:last-child, th:last-child {
+		width:	 		20px;
+		max-width: 		20px;
+	}
+
+	td:nth-child(2), th:nth-child(2) {
+		width:			170px;
+		max-width:		170px;
+		text-align: 	left;
+	}
+
+	td:nth-child(3):not(:last-child), th:nth-child(3):not(:last-child) {
+		width:			80px;
+		max-width:		80px;
+		text-align: 	right;
+	}
+
+	td[colspan="2"], th[colspan="2"] {
+		text-align: 	center;
+	}
+</style>
+
+<table id="receipt">
+	<thead>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<th colspan="2" style="font-size: 25px">SPLIT</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td colspan="2" style="text-align: center;">Restaurant Name</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Name:</th>
+			<th>Ind. Total:</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>person1</td>
+			<td>12.34</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>person2</td>
+			<td>23.45</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>person3</td>
+			<td>34.56</td>
+			<td>&nbsp;</td>
+		</tr>
+		<td>&nbsp;</td>
+		<tr>
+			<td>&nbsp;</td>
+			<td colspan="2">__________</td>
+			<td>&nbsp;</td>
+		</tr>
+		<td>&nbsp;</td>
+		<tr>
+			<td>&nbsp;</td>
+			<td colspan="2">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Subtotal:</td>
+			<td>99.99</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Tax:</td>
+			<td>99.99</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Tip:</td>
+			<td>99.99</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Credits:</td>
+			<td>99.99</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<th>TOTAL:</th>
+			<th>99.99</th>
+			<th>&nbsp;</th>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="text-align: center" colspan="2">
+				This was generated via <a href="https://calvinlin.github.io/split">calvinlin.github.io/split</a>.  For more info on the calculations, click or scan the QR code below:
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="text-align: center" colspan="2">
+				<a href="https://calvinlin.github.io/split">
+					<img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=https://calvinlin.github.io/split;size=100x100" alt="" title="HELLO" width="100" height="100" />
+				</a>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="4">&nbsp;</td>
+		</tr>
+	</tfoot>
+</table>
+
+<input id="copy_btn" type="button" value="copy">
+
+
+<script type="text/javascript">
+	var copyBtn = document.querySelector('#copy_btn');
+	copyBtn.addEventListener('click', function () {
+		document.getElementById('receipt').style.display = 'block'; // show
+		var urlField = document.querySelector('table');
+
+  // create a Range object
+  var range = document.createRange();  
+  // set the Node to select the "range"
+  range.selectNode(urlField);
+  // add the Range to the set of window selections
+  window.getSelection().addRange(range);
+
+  // execute 'copy', can't 'cut' in this case
+  document.execCommand('copy');
+  document.getElementById('receipt').style.display = 'none'; // show
+}, false);
+</script>
