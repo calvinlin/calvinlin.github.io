@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Created By: 		Calvin
 // Initial Launch: 	1/7/17
-// Last Updated: 	7/5/20
+// Last Updated: 	7/12/20
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Individual Total Calculation:
@@ -31,7 +31,21 @@ function initContents() {
 	$('#share_modal').hide();
 
 	if(isMobilePhone) {
-		$('#subTitle').html('i hope this works.');
+		$('#subTitle').html('I hope this works.');
+	} else {
+		$('#subTitle').html((function(r) {
+			switch(r) {
+				case '0' : return 'WHY ISN\'T BOBA A CURRENCY?';
+				case '1' : return 'HOW TO MATH?';
+				case '2' : return 'MATHING IS HARD';
+				case '3' : return '<a href="https://youtu.be/dQw4w9WgXcQ">CLICK ME!</a>';
+				case '4' : return 'o_o';
+				case '5' : return 'SEND BOBA.';
+				default  : return 'FOREVER IN BETA.';
+			}
+
+		})(Math.random().toString()[2]));
+		
 	}
 
 	$('.dynamicDate').html(getDate());
@@ -193,91 +207,3 @@ function checkValidInput(elem) {
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-function updateAll() {
-	// var f = false;
-
-	// $('input[type="number"]').each(function() {
-
-	// 	var val = calcInput($(this).val());
-	// 	if(isNan($(this).val()) && !val) 
-	// 		break;
-	// });
-
-	updateSubTotal();
-	updateTotal();
-	updatePercentCost();
-	updateAddlCost();
-	updateIndividualTotal();
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-function updateIndividualTotal() {
-	$('.person').each(function() {
-		var total 		= 0;
-		var indivCost 	= $(this).find('.itemCost').val();
-		var addlCost 	= $(this).find('.addlCost').val();
-
-		total += (indivCost == '') 	? 0 : convFloat(indivCost);
-		total += (addlCost == '')	? 0 : convFloat(addlCost);
-		$(this).find('.individualTotal').val(convFloat(total));
-	});
-}
-
-function updateSubTotal() {
-	var subTotal = 0;
-
-	$('.person .itemCost').each(function() {
-		subTotal += convFloat($(this).val().trim());
-	});
-
-	$('#subTotal').val(convFloat(subTotal));
-}
-
-function updateTotal() {
-	var total 		= 0;
-	var subTotal 	= $('#subTotal').val();
-	var tax 		= $('#tax').val();
-	var tip 		= $('#tip').val();
-	var credits	 	= $('#credits').val();
-
-	total += (subTotal == '') 	? 0 : convFloat(subTotal);
-	total += (tax == '') 		? 0 : convFloat(tax);
-	total += (tip == '')		? 0 : convFloat(tip);
-	total -= (credits == '') 	? 0 : convFloat(credits);
-
-	$('#total').val(convFloat(total));
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-function updatePercentCost() {
-	var total = $('#subTotal').val();
-
-	$('.person').each(function() {
-		var itemCost = convFloat($(this).find('.itemCost').val());
-
-		$(this).find('.percent').val(itemCost / convFloat($('#subTotal').val()));
-	});
-
-}
-
-function updateAddlCost() {
-	var tax 		= $('#tax').val();
-	var tip 		= $('#tip').val();
-	var credits	 	= $('#credits').val();	
-
-	var fees 		= 0;
-	fees 			+= (tax == '') 		? 0 : convFloat(tax);
-	fees 			+= (tip == '')		? 0 : convFloat(tip);
-	fees 			-= (credits == '') 	? 0 : convFloat(credits);
-
-	$('.person').each(function() {
-		var percent = convFloat($(this).find('.percent').val());
-
-		$(this).find('.addlCost').val(convFloat(percent * fees));
-	});
-}
