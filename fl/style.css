@@ -1,0 +1,71 @@
+body {
+	font-family: 	'Roboto', sans-serif;
+	background-color:  #F5F5F5;
+}
+label {
+	display:inline-block;
+	width:80px;
+	padding: 7px 0;
+}
+label {
+	padding: 7px 0;
+	text-align: right;
+	padding-right: 10px;
+}
+#content {
+	max-width:  	1100px;
+	margin: 		0 auto;
+	padding: 		50px 50px;
+	text-align:  	center;
+}
+#title {
+	font-size:  	50px;
+	text-align:  	center;
+	font-family:  	'Abel', sans-serif;
+	margin:			0 0 50px;
+}
+/* .pageURL {
+	padding-bottom: 50px;
+} */
+/* input#url {
+	width:500px;
+} */
+
+input.clubInput {
+	width:300px;
+}
+
+
+#result {
+	font-weight: bold;
+	padding-top: 50px;
+}
+#result input{
+	width:700px;
+}
+#result label{
+	display:inline-block;
+	width:80px;
+}
+.copyToClipboard {
+    width: 780px;
+    margin: auto;
+}
+#copy {
+	border: none;
+	border-radius: 5px;
+	padding: 10px 25px;
+	font-size: 17px;
+	line-height: 17px;
+	color: #EEE;
+	background: #297A4A;
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	float: right;
+	margin-right: -10px;
+}

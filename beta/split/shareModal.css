@@ -64,11 +64,11 @@
 	text-align: 	left;
 }
 
-#emailContent td:nth-child(3):not(:last-child), th:nth-child(3):not(:last-child) {
+/*#emailContent td:nth-child(3):not(:last-child), th:nth-child(3):not(:last-child) {
 	width:			80px;
 	max-width:		80px;
 	text-align: 	right;
-}
+}*/
 
 #emailContent td[colspan="2"], th[colspan="2"] {
 	text-align: 	center;

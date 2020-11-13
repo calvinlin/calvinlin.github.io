@@ -126,6 +126,10 @@ function initEvents() {
 	});
 
 	$(document).on('click', '#share', function() {
+		if(generateData().indexOf(':::') > -1) {
+			alert('There\'s nothing to share!');
+			return;
+		}
 		var url = 'https://api.qrserver.com/v1/create-qr-code/?data=';
 		url += window.location.href + '?d=' + generateData();
 		url += '&amp;size=50x50';
