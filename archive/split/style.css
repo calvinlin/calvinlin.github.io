@@ -1,14 +1,7 @@
 
 body {
 	background: 	#EEE;
-	font-family: 	'Jost', sans-serif;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+	font-family: 	'Oswald', sans-serif;
 }
 
 #container {
@@ -26,7 +19,6 @@ input::-webkit-inner-spin-button {
 	width:  		100%;
 	margin-bottom: 	50px;
 	text-align:  	center;
-	font-family: 	'Oswald', sans-serif;
 }
 
 #pageTitle span {
@@ -67,7 +59,7 @@ input::-webkit-inner-spin-button {
 
 table {
 	display:  		inline-block;
-	border: 		2px solid #333;
+	border: 		3px solid #333;
 	padding: 		20px;
 }
 
@@ -93,8 +85,7 @@ table input {
 
 #bottomBtn input {
 	border: 		none;
-	border-radius:	5px;
-	padding:  		10px 25px;
+	padding:  		7px 15px;
 
 	font-size:  	17px;
 	line-height:  	17px;
@@ -105,8 +96,8 @@ table input {
 	background:  	#AA3939;
 }
 
-#share {
-	background: 	#297A4A;
+#notify {
+	background: 	#CAB910;
 }
 
 #save, #recall {

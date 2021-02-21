@@ -38,9 +38,10 @@ function initContents() {
 				case '0' : return 'WHY ISN\'T BOBA A CURRENCY?';
 				case '1' : return 'HOW TO MATH?';
 				case '2' : return 'MATHING IS HARD';
-				case '3' : return '<a href="https://youtu.be/dQw4w9WgXcQ">CLICK ME!</a>';
+				case '3' : return 'NOT MOBILE OPTIMIZED (SORRY)';
 				case '4' : return 'o_o';
 				case '5' : return 'SEND BOBA.';
+				case '6' : return 'CRUNCHING FOOD OVER CRUNCHING NUMBERS';
 				default  : return 'FOREVER IN BETA.';
 			}
 
@@ -107,6 +108,11 @@ function initEvents() {
 
 	$(document).on('click', '#reset', function() {
 
+		if(generateData().indexOf(':::') > -1) {
+			alert('There\'s nothing to reset!');
+			return;
+		}
+
 		if(confirm('Are you sure you want to reset?')) {
 			$('.person').remove();
 			$('#addPerson').click();
@@ -118,6 +124,10 @@ function initEvents() {
 	});
 
 	$(document).on('click', '#save', function() {
+		if(generateData().indexOf(':::') > -1) {
+			alert('There\'s nothing to save!');
+			return;
+		}
 		saveInfo(prompt('Enter a name to save data under:'));
 	});
 

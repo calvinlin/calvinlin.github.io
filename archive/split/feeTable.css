@@ -7,7 +7,6 @@
 #feeTable input {
 	width:  		120px;
 	text-align:  	right;
-	padding-right:	5px;
 }
 
 #feeTable td:nth-child(1){

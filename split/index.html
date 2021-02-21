@@ -4,11 +4,15 @@
 <head>
 	<title>Split</title>
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="personTable.css">
 	<link rel="stylesheet" type="text/css" href="feeTable.css">
+	<link rel="stylesheet" type="text/css" href="shareModal.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="script.js"></script>
+	<script src="calculator.js"></script>
+	<script src="readwrite.js"></script>
 </head>
 <body>
 
@@ -16,7 +20,7 @@
 
 		<div id="pageTitle">
 			<span>SPLIT</span>
-			<span>FOREVER IN BETA.</span>
+			<span id="subTitle">FOREVER IN BETA.</span>
 		</div>
 		<form>
 			<table id="personTable">
@@ -30,18 +34,18 @@
 				<tbody>
 
 					<tr class="person">
-						<td><div class="deletePerson clickElem">x</span></td>
+						<td><div class="deletePerson clickElem">x</div></td>
 						<td><input class="personName" type="text"></td>
-						<td><input class="itemCost" type="text"></td>
-						<td><input class="addlCost" type="text" disabled><input class="percent" type="text" hidden></td>
-						<td><input class="individualTotal" type="text" disabled></td>
+						<td><input class="itemCost num" type="text"></td>
+						<td><input class="addlCost num" type="number" disabled><input class="percent" type="text" hidden></td>
+						<td><input class="individualTotal num" type="number" disabled></td>
 					</tr>
 					<tr class="newPerson">
-						<td><div class="deletePerson clickElem">x</span></td>
+						<td><div class="deletePerson clickElem">x</div></td>
 						<td><input class="personName" type="text"></td>
-						<td><input class="itemCost" type="text"></td>
-						<td><input class="addlCost" type="text" disabled><input class="percent" type="text" hidden></td>
-						<td><input class="individualTotal" type="text" disabled></td>
+						<td><input class="itemCost num" type="text"></td>
+						<td><input class="addlCost num" type="number" disabled><input class="percent" type="text" hidden></td>
+						<td><input class="individualTotal num" type="number" disabled></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -54,36 +58,128 @@
 				<tbody>
 					<tr>
 						<td>Subtotal:</td>
-						<td><input id="subTotal" disabled></td>
+						<td><input id="subTotal"  type="num" disabled></td>
 					</tr>
 					<tr>
 						<td>Tax:</td>
-						<td><input id="tax"></td>
+						<td><input id="tax" class="num" type="text"></td>
 					</tr>
 					<tr>
 						<td>Tip:</td>
-						<td><input id="tip"></td>
+						<td><input id="tip" class="num" type="text"></td>
 					</tr>
 					<tr>
 						<td>Credits:</td>
-						<td><input id="credits"></td>
+						<td><input id="credits" class="num" type="text"></td>
 					</tr>
 					<tr>
 						<td><b>Total:</b></td>
-						<td><input id="total" disabled></td>
+						<td><input id="total"  type="num" disabled></td>
 					</tr>
 				</tbody>
 			</table>
-			
+
 
 			<div id="bottomBtn">
 				<input type="button" 	class="clickElem" 	id="save" 		value="save">
 				<input type="button" 	class="clickElem" 	id="recall" 	value="recall">
-				<!-- <input type="button" 	class="clickElem"	id="notify"		value="notify"> -->
+				<input type="button" 	class="clickElem"	id="share"		value="share">
 				<input type="reset" 	class="clickElem" 	id="reset" 		value="reset">
 			</div>
 		</form>
 
+
+	</div>
+	<div id="share_modal" style="display: none;">
+		<div id="qr_desc">Scan the QR code to see this bill!</div>
+		<img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=200x200" width="200" height="200" />
+		<div>
+			<input type="button" class="clickElem" id="share_email" value="email (beta)">
+			<input type="button" class="clickElem" id="share_close" value="close">
+		</div>
+	</div>
+
+	<div id="emailContent" style="display:none;">
+		<table style="border: 1px solid black; padding: 25px 15px; font-family: Arial;" cellpadding="0" cellspacing="0" >
+			<thead>
+				<tr>
+					<th colspan="2" style="font-size: 20px">SPLIT</th>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;">Restaurant Name</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="dynamicDate" style="text-align: center;"></td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th style="width:150px; text-align: left">Name:</th>
+					<th style="text-align: right;">Ind. Total:</th>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">person1</td>
+					<td style="width:80px; text-align: right">12.34</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">person2</td>
+					<td style="width:80px; text-align: right">23.45</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">person3</td>
+					<td style="width:80px; text-align: right">34.56</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left" colspan="2">__________</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left" colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Subtotal:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Tax:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Tip:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<td style="width:150px; text-align: left">Credits:</td>
+					<td style="width:80px; text-align: right">99.99</td>
+				</tr>
+				<tr>
+					<th style="width:150px; text-align: left">TOTAL:</th>
+					<th style="text-align: right;">99.99</th>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr rowspan="2">
+					<td colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="text-align: center" colspan="2">
+						This was generated via <a href="https://calvinlin.github.io/split">calvinlin.github.io/split</a>.  To see the calculations, click or scan this QR code:
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="text-align: center" colspan="2">
+						<a href="https://calvinlin.github.io/split">
+							<img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=https://calvinlin.github.io/split;size=100x100" alt="" title="HELLO" width="100" height="100" />
+						</a>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
 
 	</div>
 </body>
