@@ -30,10 +30,24 @@ body {
 	text-align:  	left;
 }
 
+/* for Christmas, odd = green; even = red*/
+
+.christmas .section:nth-child(odd) {
+	background-color: #FFC6C6;
+}
+
+.christmas .section:nth-child(even) {
+	background-color: #A0CEA0;
+}
+
+.stpatricksday .section {
+	background-color: #FFC6C6;
+}
+
 .sectionHeader {
 	font-weight:  	bold;
 	font-size:  	21px;
-	margin:			25px 0 15px;
+	margin:			25px 0 10px;
 }
 
 .sectionContents {
@@ -49,4 +63,8 @@ body {
 
 a {
 	color: 			blue;
+}
+
+.hiddenLink {
+	display: 		none;
 }
