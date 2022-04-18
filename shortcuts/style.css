@@ -30,18 +30,25 @@ body {
 	text-align:  	left;
 }
 
-/* for Christmas, odd = green; even = red*/
-
+/* for Christmas, odd = red; even = green */
 .christmas .section:nth-child(odd) {
 	background-color: #FFC6C6;
 }
-
 .christmas .section:nth-child(even) {
 	background-color: #A0CEA0;
 }
 
+/* for St. Patrick's Day, all green */
 .stpatricksday .section {
-	background-color: #FFC6C6;
+	background-color: #A0CEA0;
+}
+
+/* for Thanksgiving, odd = brown; even = orange */
+.thanksgiving .section:nth-child(odd) {
+	background-color: #C7925E;
+}
+.thanksgiving .section:nth-child(even) {
+	background-color: #F5C36D;
 }
 
 .sectionHeader {

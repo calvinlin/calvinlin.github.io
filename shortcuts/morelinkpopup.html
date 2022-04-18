@@ -1,0 +1,471 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Abel|Roboto" rel="stylesheet">
+
+<style media="screen">
+
+    body {
+        /* background: #DDD; */
+        padding: 30px 30px 0 30px;
+        border: 5px solid grey;
+    }
+
+    #container {
+        font-family: 'Roboto', sans-serif;
+        text-align: left;
+        margin: 0 auto;
+    }
+    #container h2 {
+        font-family: 'Abel', sans-serif;
+        font-size: 30px;
+        margin: 20px 0;
+        margin-bottom: 90px;
+    }
+    p.products {
+        margin-bottom: 15px;
+    }
+    .products span {
+        display: inline-block;
+        width: 150px;
+        font-size: 17px;
+    }
+    .products span a {
+        color: #0000ff;
+        text-decoration: underline;
+    }
+    .products span a:hover {
+        /* color: grey; */
+        font-weight: bold;
+    }
+    span.title {
+        font-weight: bold;
+        color: black;
+    }
+
+.toggleContainer {
+  text-align: center;
+  border: 1px solid #808080;
+  max-width: 280px;
+  font-size: 16px;
+  display: inline-block;
+  padding: 0 !important;
+  float:right;
+}
+
+@media (max-width: 768px) {
+  .toggleContainer {
+    max-width: initial;
+    font-size: 13px;
+  }
+}
+
+.toggleContainer .whitebg {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.toggleContainer .bluebg {
+  background-color: #808080;
+  color: white;
+}
+
+.Prod {
+  display: block;
+}
+
+.lowEnv {
+  display: none;
+}
+
+#lowerButton,
+#prodButton {
+  display: inline-block;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+}
+
+#lowerButton.active,
+#prodButton.active {
+  background-color: #808080;
+  color: white;
+}
+
+#prodContainer, #lowerContainer {
+  display: none;
+}
+
+#lowerContainer.active, #prodContainer.active {
+  display: block !important;
+}
+</style>
+
+
+<div class="toggleContainer">
+    <div id="prodButton" class="active">PROD</div>
+    <div id="lowerButton" class="">LOWER</div>
+</div>
+
+
+<div id="container" style="text-align: left;">
+
+    <h2>Additional Links</h2>
+
+    <!----------       Prod Links          ---------->
+    <div id="prodContainer" class=" Prod active">
+
+        <p class="products" id="insurance"><span class="title">Insurance</span><span><a target="_blank">Auto</a></span><span><a target="_blank">Home</a></span><span><a target="_blank">Life</a></span><span><a target="_blank">Ins. PWOL</a></span></p>
+        <p class="products" id="membership"><span class="title">Membership</span><span><a target="_blank" class="joinApp">Join</a></span><span><a target="_blank">Gift</a></span><span><a target="_blank" class="joinLP">Join LP</a></span><span><a target="_blank">Mem. PWOL</a></span></p>
+        <p class="products" id="enterprise"><span class="title">Enterprise</span><span><a target="_blank">Login</a></span><span><a target="_blank">Register</a></span></p>
+        <p class="products" id="travel"><span class="title">Travel</span><span><a target="_blank">Hotel</a></span><span><a target="_blank">MVP</a></span><span><a target="_blank">Mexico Auto Ins</a></span></p>
+        <p class="products" id="automotive"><span class="title">Automotive</span><span><a target="_blank">CBS</a></span><span><a target="_blank">AAR</a></span><span><a target="_blank">Battery</a></span><span><a target="_blank">Driving School LP</a></span></p>
+        <p class="products" id="other"><span class="title">Other</span><span><a target="_blank">Discounts</a></span><span><a target="_blank">ID Theft</a></span></p>
+
+    </div>
+
+    <!----------     Lower Env Links       ---------->
+    <div id="lowerContainer" class="lowEnv">
+
+        <p class="products" id="insurance"><span class="title">Insurance</span><span><a target="_blank">Auto</a></span><span><a target="_blank">Home</a></span><span><a target="_blank">Life</a></span><span><a target="_blank">Ins. PWOL</a></span></p>
+        <p class="products" id="membership"><span class="title">Membership</span><span><a target="_blank" class="joinApp">Join</a></span><span><a target="_blank">Gift</a></span><span><a target="_blank" class="joinLP">Join LP</a></span><span><a target="_blank">Mem. PWOL</a></span></p>
+        <p class="products" id="enterprise"><span class="title">Enterprise</span><span><a target="_blank">Login</a></span><span><a target="_blank">Register</a></span></p>
+        <p class="products" id="travel"><span class="title">Travel</span><span><a target="_blank">Hotel</a></span><span><a target="_blank">MVP</a></span><span><a target="_blank">Mexico Auto Ins</a></span></p>
+        <p class="products" id="automotive"><span class="title">Automotive</span><span><a target="_blank">CBS</a></span><span><a target="_blank">AAR</a></span><span><a target="_blank">Battery</a></span><span><a target="_blank">Driving School LP</a></span></p>
+        <p class="products" id="other"><span class="title">Other</span><span><a target="_blank">Discounts</a></span><span><a target="_blank">ID Theft</a></span></p>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    // detects what club has been chosen
+    const urlParams = new URLSearchParams(window.location.search);
+    const club_abbr = urlParams.get('club');
+
+    var S_dict = {
+      'auto' : {
+        'ca' : 'https://apps2.calif.aaa.com/insurance/auto/olb?zip=92626',
+        'tx' : 'https://apps2.texas.aaa.com/insurance/auto/olb?zip=78701',
+        'nm' : 'https://apps2.newmexico.aaa.com/aceapps/insurance/quote/contact?zip=87101',
+        'hi' : 'https://apps.hawaii.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=1&zip=96801',
+        'nne' : 'https://apps2.northernnewengland.aaa.com/aceapps/insurance/quote/contact?zip=04430',
+        'tw' : 'https://apps.tidewater.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=1&zip=23456',
+        'al' : 'https://apps.alabama.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=1&zip=35243',
+        'acmo' : 'https://apps2.autoclubmo.aaa.com/aceapps/insurance/quote/contact?zip=63141',
+        'ec' : 'https://apps2.eastcentral.aaa.com/aceapps/insurance/quote/contact?zip=15227',
+      },
+      'home' : {
+        'ca' : 'https://apps.calif.aaa.com/aceapps/insurance/quotes/residential/Home/GetStarted?zip=92626',
+        'tx' : 'https://apps.texas.aaa.com/aceapps/insurance/quotes/residential/Home/GetStarted?zip=78701',
+        'nm' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=2&zip=87101',
+        'hi' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=2&zip=96801',
+        'nne' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=2&zip=04430',
+        'tw' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=2&zip=23456',
+        'al' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=2&zip=35243',
+        'acmo' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=2&zip=63141',
+        'ec' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?ip=2&zip=15227',
+      },
+      'life' : {
+        'ca' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=92626',
+        'tx' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=78701',
+        'nm' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=87101',
+        'hi' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=96801',
+        'nne' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=04430',
+        'tw' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=23456',
+        'al' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=35243',
+        'acmo' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=63141',
+        'ec' : 'https://apps.ace.aaa.com/aceapps/insurance/quotes/ShortForm/GetStarted?rpc=life&zip=15227',
+      },
+      'insPWOL' : {
+        'ca' : 'https://apps.calif.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=92626',
+        'tx' : 'https://apps.texas.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=78701',
+        'nm' : 'https://apps.newmexico.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=87101',
+        'hi' : 'https://apps.hawaii.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=96801',
+        'nne' : 'https://apps.northernnewengland.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=04430',
+        'tw' : 'https://apps.tidewater.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=23456',
+        'al' : 'https://apps.alabama.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=35243',
+        'acmo' : 'https://apps.autoclubmo.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=63141',
+        'ec' : 'https://apps.eastcentral.aaa.com/aceapps/insurance/billpay/quickpay/start?zip=15227',
+      },
+      'join' : {
+        'ca' : 'https://apps.calif.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=92626',
+        'tx' : 'https://apps.texas.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=78701',
+        'nm' : 'https://apps.newmexico.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=87101',
+        'hi' : 'https://apps.hawaii.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=96801',
+        'nne' : 'https://apps.northernnewengland.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=04430',
+        'tw' : 'https://apps.tidewater.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=23456',
+        'al' : 'https://apps.alabama.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=35243',
+        'acmo' : 'https://apps.autoclubmo.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=63141',
+        'ec' : 'https://apps.eastcentral.aaa.com/aceapps/membership/JoinNow/Start?flowName=NewBiz&zip=15227',
+      },
+      'gift' : {
+        'ca' : 'https://apps.calif.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=92626',
+        'tx' : 'https://apps.texas.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=78701',
+        'nm' : 'https://apps.newmexico.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=87101',
+        'hi' : 'https://apps.hawaii.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=96801',
+        'nne' : 'https://apps.northernnewengland.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=04430',
+        'tw' : 'https://apps.tidewater.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=23456',
+        'al' : 'https://apps.alabama.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=35243',
+        'acmo' : 'https://apps.autoclubmo.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=63141',
+        'ec' : 'https://apps.eastcentral.aaa.com/aceapps/membership/GiftMembership/SelectMembershipLevel?flowName=Gift&zip=15227',
+      },
+      'joinLP' : {
+        'ca' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=92626',
+        'tx' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=78701',
+        'nm' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=87101',
+        'hi' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=96801',
+        'nne' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=04430',
+        'tw' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=23456',
+        'al' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=35243',
+        'acmo' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=63141',
+        'ec' : 'https://www.ace.aaa.com/membership/why-join-aaa.html?zip=15227',
+      },
+      'memPWOL' : {
+        'ca' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=92626',
+        'tx' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=78701',
+        'nm' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=87101',
+        'hi' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=96801',
+        'nne' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=04430',
+        'tw' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=23456',
+        'al' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=35243',
+        'acmo' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=63141',
+        'ec' : 'https://app.ace.aaa.com/membership/make-a-payment/?zip=15227',
+      },
+      'login' : {
+        'ca' : 'https://apps2.calif.aaa.com/aceapps/myaccount?zip=92626',
+        'tx' : 'https://apps2.texas.aaa.com/aceapps/myaccount?zip=78701',
+        'nm' : 'https://apps2.newmexico.aaa.com/aceapps/myaccount?zip=87101',
+        'hi' : 'https://apps2.hawaii.aaa.com/aceapps/myaccount?zip=96801',
+        'nne' : 'https://apps2.northernnewengland.aaa.com/aceapps/myaccount?zip=04430',
+        'tw' : 'https://apps2.tidewater.aaa.com/aceapps/myaccount?zip=23456',
+        'al' : 'https://apps2.alabama.aaa.com/aceapps/myaccount?zip=35243',
+        'acmo' : 'https://apps2.autoclubmo.aaa.com/aceapps/myaccount?zip=63141',
+        'ec' : 'https://apps2.eastcentral.aaa.com/aceapps/myaccount?zip=15227',
+      },
+      'register' : {
+        'ca' : 'https://apps.calif.aaa.com/aceapps/account-maintenance/register/start?zip=92626',
+        'tx' : 'https://apps.texas.aaa.com/aceapps/account-maintenance/register/start?zip=78701',
+        'nm' : 'https://apps.newmexico.aaa.com/aceapps/account-maintenance/register/start?zip=87101',
+        'hi' : 'https://apps.hawaii.aaa.com/aceapps/account-maintenance/register/start?zip=96801',
+        'nne' : 'https://apps.northernnewengland.aaa.com/aceapps/account-maintenance/register/start?zip=04430',
+        'tw' : 'https://apps.tidewater.aaa.com/aceapps/account-maintenance/register/start?zip=23456',
+        'al' : 'https://apps.alabama.aaa.com/aceapps/account-maintenance/register/start?zip=35243',
+        'acmo' : 'https://apps.autoclubmo.aaa.com/aceapps/account-maintenance/register/start?zip=63141',
+        'ec' : 'https://apps.eastcentral.aaa.com/aceapps/account-maintenance/register/start?zip=15227',
+      },
+      'hotel' : {
+        'ca' : 'https://travel.calif.aaa.com/hotel?zip=92626',
+        'tx' : 'https://travel.texas.aaa.com/hotel?zip=78701',
+        'nm' : 'https://travel.newmexico.aaa.com/hotel?zip=87101',
+        'hi' : 'https://travel.hawaii.aaa.com/hotel?zip=96801',
+        'nne' : 'https://travel.northernnewengland.aaa.com/hotel?zip=04430',
+        'tw' : 'https://travel.tidewater.aaa.com/hotel?zip=23456',
+        'al' : 'https://travel.alabama.aaa.com/hotel?zip=35243',
+        'acmo' : 'https://travel.autoclubmo.aaa.com/hotel?zip=63141',
+        'ec' : 'https://travel.eastcentral.aaa.com/hotel?zip=15227',
+      },
+      'mvp' : {
+        'ca' : 'https://calif.membervacationportal.com/?zip=92626',
+        'tx' : 'https://texas.membervacationportal.com/?zip=78701',
+        'nm' : 'https://newmexico.membervacationportal.com/?zip=87101',
+        'hi' : 'https://hawaii.membervacationportal.com/?zip=96801',
+        'nne' : 'https://northernnewengland.membervacationportal.com/?zip=04430',
+        'tw' : 'https://tidewater.membervacationportal.com/?zip=23456',
+        'al' : 'https://alabama.membervacationportal.com/?zip=35243',
+        'acmo' : 'https://autoclubmo.membervacationportal.com/?zip=63141',
+        'ec' : 'https://eastcentral.membervacationportal.com/?zip=15227',
+      },
+      'mexicoAutoIns' : {
+        'ca' : 'https://sb.iigins.com/quote/?aff_id=MASACSWEB&lang=&agtdst=WEB&office_code=WEB',
+        'tx' : 'https://sb.iigins.com/quote/?aff_id=11781&agtdst=WEB&office_code=WEB',
+        'nm' : 'https://sb.iigins.com/quote/?aff_id=11780&agtdst=WEB&office_code=WEB',
+      },
+      'cbs' : {
+        'ca' : 'https://usedcar.calif.aaa.com/app/UsedCarInventory',    //https://www.autoclubcarbuying.com/form/GetAAAPricing
+        'tx' : 'https://texas.aaacarbuyingservice.com',
+        'nm' : 'https://newmexico.aaacarbuyingservice.com',
+        'hi' : '',
+        'nne' : 'https://northernnewengland.aaacarbuyingservice.com',
+        'tw' : 'https://tidewater.aaacarbuyingservice.com',
+        'al' : 'https://alabama.aaacarbuyingservice.com',
+        'acmo' : 'https://autoclubmo.aaacarbuyingservice.com',
+        'ec' : 'https://eastcentral.aaacarbuyingservice.com',
+      },
+      'aar' : {
+        'ca' : 'https://apps2.calif.aaa.com/aar?zip=92626',
+        'tx' : 'https://apps2.texas.aaa.com/aar?zip=78701',
+        'nm' : 'https://apps2.newmexico.aaa.com/aar?zip=87101',
+        'hi' : 'https://apps2.hawaii.aaa.com/aar?zip=96801',
+        'nne' : 'https://apps2.northernnewengland.aaa.com/aar?zip=04430',
+        'tw' : 'https://apps2.tidewater.aaa.com/aar?zip=23456',
+        'al' : 'https://apps2.alabama.aaa.com/aar?zip=35243',
+        'acmo' : 'https://apps2.autoclubmo.aaa.com/aar?zip=63141',
+        'ec' : 'https://apps2.eastcentral.aaa.com/aar?zip=15227',
+      },
+      'battery' : {
+        'ca' : 'https://www.aaa.com/carbatteryquote/?zip=92626',
+        'tx' : 'https://www.aaa.com/carbatteryquote/?zip=78701',
+        'nm' : 'https://www.aaa.com/carbatteryquote/?zip=87101',
+        'hi' : 'https://www.aaa.com/carbatteryquote/?zip=96801',
+        'nne' : 'https://www.aaa.com/carbatteryquote/?zip=04430',
+        'tw' : 'https://www.aaa.com/carbatteryquote/?zip=23456',
+        'al' : 'https://www.aaa.com/carbatteryquote/?zip=35243',
+        'acmo' : 'https://www.aaa.com/carbatteryquote/?zip=63141',
+        'ec' : 'https://www.aaa.com/carbatteryquote/?zip=15227',
+      },
+      'drivingSchoolLP' : {
+        'ca' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=92626',
+        'tx' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=78701',
+        'nm' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=87101',
+        'hi' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=96801',
+        'nne' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=04430',
+        'tw' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=23456',
+        'al' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=35243',
+        'acmo' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=63141',
+        'ec' : 'https://www.ace.aaa.com/automotive/driver-education/teen-programs/auto-club-driving-school.html?zip=15227',
+      },
+      'discounts' : {
+        'ca' : 'https://discounts.calif.aaa.com/?zip=92626',
+        'tx' : 'https://discounts.texas.aaa.com/?zip=78701',
+        'nm' : 'https://discounts.newmexico.aaa.com/?zip=87101',
+        'hi' : 'https://discounts.hawaii.aaa.com/?zip=96801',
+        'nne' : 'https://discounts.northernnewengland.aaa.com/?zip=04430',
+        'tw' : 'https://discounts.tidewater.aaa.com/?zip=23456',
+        'al' : 'https://discounts.alabama.aaa.com/?zip=35243',
+        'acmo' : 'https://discounts.autoclubmo.aaa.com/?zip=63141',
+        'ec' : 'https://discounts.eastcentral.aaa.com/?zip=15227',
+      },
+      'idTheft' : {
+        'ca' : 'https://www.aaa.com/experianidtheft/?zip=92626',
+        'tx' : 'https://www.aaa.com/experianidtheft/?zip=78701',
+        'nm' : 'https://www.aaa.com/experianidtheft/?zip=87101',
+        'hi' : 'https://www.aaa.com/experianidtheft/?zip=96801',
+        'nne' : 'https://www.aaa.com/experianidtheft/?zip=04430',
+        'tw' : 'https://www.aaa.com/experianidtheft/?zip=23456',
+        'al' : 'https://www.aaa.com/experianidtheft/?zip=35243',
+        'acmo' : 'https://www.aaa.com/experianidtheft/?zip=63141',
+        'ec' : 'https://www.aaa.com/experianidtheft/?zip=15227',
+      }
+    }
+
+    /////////////////  Update URLs  ///////////////////////
+    function createProductLink (elem, productType) {
+
+        // if the URL exist for that specific club exist in JSON file and the value is not empty
+        if(elem.length == 1 && typeof(S_dict[productType][club_abbr]) != "undefined" && S_dict[productType][club_abbr].length > 1) {
+
+          // lower environment container URL updates
+          if( elem[0].parentElement.parentElement.parentElement === document.getElementById("lowerContainer")) {
+              if (S_dict[productType][club_abbr].indexOf('apps.') > -1) {
+                  elem.attr('href', S_dict[productType][club_abbr].replace('apps.', 'uatmvc.'));
+              } else if (S_dict[productType][club_abbr].indexOf('apps2.') > -1) {
+                  elem.attr('href', S_dict[productType][club_abbr].replace('apps2.', 'uatapps2.'));
+              } else if (S_dict[productType][club_abbr].indexOf('www.ace.aaa.com') > -1) {
+                  elem.attr('href', S_dict[productType][club_abbr].replace('www.ace.aaa.com', 'qaaem.ace.aaa.com'));
+              } else if (S_dict[productType][club_abbr].indexOf('app.') > -1) {
+                  elem.attr('href', S_dict[productType][club_abbr].replace('app.', 'appuat1.'));
+              } else {
+                  elem.parent().css({"display": "none"});
+              }
+
+          // Prod environment container URL updateds
+          } else {
+              elem.attr('href', S_dict[productType][club_abbr]);
+          }
+
+        // if the URL for the specified club does not exist in JSON file or the value is empty
+        } else {
+            //elem.css({"pointer-events": "none", "cursor": "default", "color": "#b9b9b9", "text-decoration": "none"});
+            elem.parent().css({"display": "none"});
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////// Prod link updates ////////////////////////////////////////////////////////////////////////
+    /////////////////  Update Insurance LOB links  ///////////////////////
+    createProductLink ($('#prodContainer #insurance a:contains("Auto")'), 'auto');
+    createProductLink ($('#prodContainer #insurance a:contains("Home")'), 'home');
+    createProductLink ($('#prodContainer #insurance a:contains("Life")'), 'life');
+    createProductLink ($('#prodContainer #insurance a:contains("Ins. PWOL")'), 'insPWOL');
+
+    /////////////////  Update Membership LOB links  ///////////////////////
+    createProductLink ($('#prodContainer #membership .joinApp:contains("Join")'), 'join');
+    createProductLink ($('#prodContainer #membership a:contains("Gift")'), 'gift');
+    createProductLink ($('#prodContainer #membership .joinLP:contains("Join LP")'), 'joinLP');
+    createProductLink ($('#prodContainer #membership a:contains("Mem. PWOL")'), 'memPWOL');
+
+    /////////////////  Update Enterprise LOB links  ///////////////////////
+    createProductLink ($('#prodContainer #enterprise a:contains("Login")'), 'login');
+    createProductLink ($('#prodContainer #enterprise a:contains("Register")'), 'register');
+
+    /////////////////  Update Travel LOB links  ///////////////////////
+    createProductLink ($('#prodContainer #travel a:contains("Hotel")'), 'hotel');
+    createProductLink ($('#prodContainer #travel a:contains("MVP")'), 'mvp');
+    createProductLink ($('#prodContainer #travel a:contains("Mexico Auto Ins")'), 'mexicoAutoIns');
+
+    /////////////////  Update Automotive LOB links  ///////////////////////
+    createProductLink ($('#prodContainer #automotive a:contains("CBS")'), 'cbs');
+    createProductLink ($('#prodContainer #automotive a:contains("AAR")'), 'aar');
+    createProductLink ($('#prodContainer #automotive a:contains("Battery")'), 'battery');
+    createProductLink ($('#prodContainer #automotive a:contains("Driving School LP")'), 'drivingSchoolLP');
+
+    /////////////////  Update Other links  ///////////////////////
+    createProductLink ($('#prodContainer #other a:contains("Discounts")'), 'discounts');
+    createProductLink ($('#prodContainer #other a:contains("ID Theft")'), 'idTheft');
+
+    /////////////////////////////////////////////////////////////////////////////////// Lower Env link updates /////////////////////////////////////////////////
+    /////////////////  Update Insurance LOB links  ///////////////////////
+    createProductLink ($('#lowerContainer #insurance a:contains("Auto")'), 'auto');
+    createProductLink ($('#lowerContainer #insurance a:contains("Home")'), 'home');
+    createProductLink ($('#lowerContainer #insurance a:contains("Life")'), 'life');
+    createProductLink ($('#lowerContainer #insurance a:contains("Ins. PWOL")'), 'insPWOL');
+
+    /////////////////  Update Membership LOB links  ///////////////////////
+    createProductLink ($('#lowerContainer #membership .joinApp:contains("Join")'), 'join');
+    createProductLink ($('#lowerContainer #membership a:contains("Gift")'), 'gift');
+    createProductLink ($('#lowerContainer #membership .joinLP:contains("Join LP")'), 'joinLP');
+    createProductLink ($('#lowerContainer #membership a:contains("Mem. PWOL")'), 'memPWOL');
+
+    /////////////////  Update Enterprise LOB links  ///////////////////////
+    createProductLink ($('#lowerContainer #enterprise a:contains("Login")'), 'login');
+    createProductLink ($('#lowerContainer #enterprise a:contains("Register")'), 'register');
+
+    /////////////////  Update Travel LOB links  ///////////////////////
+    createProductLink ($('#lowerContainer #travel a:contains("Hotel")'), 'hotel');
+    createProductLink ($('#lowerContainer #travel a:contains("MVP")'), 'mvp');
+    createProductLink ($('#lowerContainer #travel a:contains("Mexico Auto Ins")'), 'mexicoAutoIns');
+
+    /////////////////  Update Automotive LOB links  ///////////////////////
+    createProductLink ($('#lowerContainer #automotive a:contains("CBS")'), 'cbs');
+    createProductLink ($('#lowerContainer #automotive a:contains("AAR")'), 'aar');
+    createProductLink ($('#lowerContainer #automotive a:contains("Battery")'), 'battery');
+    createProductLink ($('#lowerContainer #automotive a:contains("Driving School LP")'), 'drivingSchoolLP');
+
+    /////////////////  Update Other links  ///////////////////////
+    createProductLink ($('#lowerContainer #other a:contains("Discounts")'), 'discounts');
+    createProductLink ($('#lowerContainer #other a:contains("ID Theft")'), 'idTheft');
+
+
+    /////////////////  Update Title  ///////////////////////
+    $('#container h2').html(club_abbr.toUpperCase() + " Club Additional Prod Links");
+
+    ////////////////  Toggle functionality ////////////////
+    $('#lowerButton').click( function(e){
+        e.preventDefault();
+        $('#container h2').html(club_abbr.toUpperCase() + " Club Additional Lower Env Links");
+        $('#lowerButton').addClass('active');
+        $('#lowerContainer').addClass('active');
+        $('#prodContainer').removeClass('active');
+        $('#prodButton').removeClass('active');
+    });
+
+    $('#prodButton').click( function(e){
+        e.preventDefault();
+        $('#container h2').html(club_abbr.toUpperCase() + " Club Additional Prod Links");
+        $('#prodButton').addClass('active');
+        $('#prodContainer').addClass('active');
+        $('#lowerContainer').removeClass('active');
+        $('#lowerButton').removeClass('active');
+    });
+
+</script>
